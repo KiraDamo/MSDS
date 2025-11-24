@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kira Damo">
+
+<title>Project 3: Visualization with ggplot2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="project3_Kira_Damo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project3_Kira_Damo_files/libs/quarto-html/quarto.js"></script>
+<script src="project3_Kira_Damo_files/libs/quarto-html/popper.min.js"></script>
+<script src="project3_Kira_Damo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project3_Kira_Damo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project3_Kira_Damo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project3_Kira_Damo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project3_Kira_Damo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project3_Kira_Damo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project3_Kira_Damo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 3: Visualization with ggplot2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kira Damo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="project-guidelines-and-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="project-guidelines-and-requirements">Project Guidelines and Requirements</h2>
+<hr>
+<section id="guidelines" class="level3">
+<h3 class="anchored" data-anchor-id="guidelines">Guidelines</h3>
+<ul>
+<li><strong>Do not share assignment questions or solutions with anyone.</strong> This includes printing, distributing, or posting them on any online platform or social media.</li>
+<li><strong>Peer discussion is permitted for general concepts or troubleshooting, but NOT for sharing code or specific solutions.</strong></li>
+<li>Complete your coding tasks within the R code chunks provided under each question.</li>
+<li>Write clear, well-commented code. Use <code>#</code> to add explanations within code chunks as needed.</li>
+<li>Use the markdown sections to provide written explanations, interpretations, and conclusions.</li>
+<li>Complete the assignment independently. Reference materials such as textbooks, R documentation, and reputable online resources may be used for support.</li>
+<li>Ensure your name is included in the Honor Pledge section.</li>
+</ul>
+<hr>
+</section>
+<section id="required-software-and-packages" class="level3">
+<h3 class="anchored" data-anchor-id="required-software-and-packages">Required Software and Packages</h3>
+<ul>
+<li>R version 4.4.2 or higher is recommended.</li>
+<li>RStudio version 2025.05.1 Build 513 or higher is recommended.</li>
+<li>Make sure that the packages used in the project are installed and loaded in your R environment.</li>
+</ul>
+<hr>
+</section>
+<section id="deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="deliverables">Deliverables</h3>
+<ol type="1">
+<li><strong>Prepare Your Quarto Document:</strong>
+<ul>
+<li><p>Your Quarto <code>.qmd</code> file should be fully executed, with all outputs visible under the relevant code chunks.</p></li>
+<li><p><strong>Do not include any active code for installing packages (such as <code>install.packages()</code>) or using the <code>View()</code> function in your final document.</strong> If you have such lines, comment them out or remove them before rendering.</p></li>
+<li><p>For example, change code like:</p>
+<pre><code>install.packages("tidyverse")
+View(mydata)
+
+mydata |&gt;
+  View()</code></pre>
+<p>to this:</p>
+<pre><code># install.packages("tidyverse")  # &lt;- Comment out or remove installation code
+# View(mydata)                   # &lt;- Comment out or remove View() calls
+
+# mydata                         # &lt;- Remove pipe symbols that lead into View() and the View() calls themselves
+                                 # &lt;- Remove checking the data, unless necessary</code></pre></li>
+</ul></li>
+<li><strong>File Naming Convention:</strong>
+<ul>
+<li>Name your project exactly as follows, using all lowercase, underscores, and leading zero for project number:
+<ul>
+<li><code>project_##_firstname_lastname.qmd</code></li>
+<li>Example: <code>project_01_ilyas_ustun.qmd</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Rendering:</strong>
+<ul>
+<li>Compile your Quarto document into an HTML report by clicking the <code>Render</code> button in RStudio. This will produce a <code>project_##_firstname_lastname.html</code> file in the same directory.</li>
+</ul></li>
+<li><strong>Submission:</strong>
+<ul>
+<li>Submit both the <code>.qmd</code> and <code>.html</code> files to the designated submission folder.</li>
+</ul></li>
+</ol>
+<hr>
+<blockquote class="blockquote">
+<p><strong>File Management Tip:</strong> If you are going to read in a data file, store all data files (e.g., <code>.csv</code>, <code>.xlsx</code>, <code>.xls</code>, <code>.txt</code>) in the same folder as your script for convenience. Otherwise, specify the full file path for your data.</p>
+</blockquote>
+<hr>
+<blockquote class="blockquote">
+<p>If you encounter errors when rendering your document to HTML, carefully review and correct your code. The entire document must run without errors for successful rendering.</p>
+</blockquote>
+<hr>
+</section>
+<section id="evaluation-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-criteria">Evaluation Criteria</h3>
+<ul>
+<li><strong>Accuracy and Completeness:</strong> Each question is worth equal points. The project is graded out of <strong>100 points</strong>.</li>
+<li><strong>Code Output</strong>: Your Quarto .qmd file should be fully executed, with all outputs visible under the relevant code chunks.</li>
+<li><strong>Code Quality:</strong> Code should be correct, well-structured, and commented appropriately.</li>
+<li><strong>Visualizations:</strong> Data visualizations must be accurate, relevant, and effectively labeled.</li>
+<li><strong>Adherence to Guidelines:</strong> File naming, formatting, and submission instructions must be followed.</li>
+</ul>
+<hr>
+</section>
+<section id="troubleshooting-and-support" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-and-support">Troubleshooting and Support</h3>
+<p>If you require assistance or experience technical issues while working on the project, please follow these steps to get the help you need:</p>
+<ul>
+<li>Check Online Resources: First, try to find the answer to your question or solution to your problem by checking online resources such as:
+<ul>
+<li>Stack Overflow (for R programming-related issues)</li>
+<li>RStudio Community (for RStudio and R-related discussions)</li>
+<li>R-bloggers (for R tutorials, tips, and best practices)</li>
+</ul></li>
+<li>Discussion Forum: If you can’t find the information you’re looking for, post your question on the course discussion forum. Your peers or instructors may have encountered a similar issue and can provide insights or guidance on R or data science concepts.</li>
+<li>Provide Context: When posting your question, please include relevant details such as:
+<ul>
+<li>A clear description of the problem or question</li>
+<li>The code you are working with (if applicable)</li>
+<li>Any error messages you are encountering</li>
+<li>The name of the dataset or context related to your question</li>
+</ul></li>
+<li>Contact the professor: If you’re unable to resolve your issue through the above steps, or if your question is of a personal or sensitive nature, please don’t hesitate to contact Dr.&nbsp;Ilyas Ustun directly.</li>
+</ul>
+<p>By following these steps, you’ll not only potentially get a quicker resolution to your issue, but you’ll also contribute to building a resourceful and supportive community within the course.</p>
+<hr>
+</section>
+<section id="submission-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="submission-checklist">Submission Checklist</h3>
+<p>Before submitting your assignment, please confirm each item:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">My <code>.qmd</code> file is named correctly (<code>project_##_firstname_lastname.qmd</code>) and runs without errors.</label></li>
+<li><label><input type="checkbox" checked="">All code chunks have been executed, and outputs are visible under each question.</label></li>
+<li><label><input type="checkbox" checked="">There is no active <code>install.packages()</code> or <code>View()</code> code (these are commented out or removed).</label></li>
+<li><label><input type="checkbox" checked="">The final HTML report is rendered and saved in the same directory as the <code>.qmd</code> file.</label></li>
+<li><label><input type="checkbox" checked="">Both <code>.qmd</code> and <code>.html</code> files are uploaded to the designated submission folder.</label></li>
+<li><label><input type="checkbox" checked="">All data visualizations are appropriate, clear, and effectively labeled.</label></li>
+<li><label><input type="checkbox" checked="">My name and the date are included in the Honor Pledge section.</label></li>
+<li><label><input type="checkbox" checked="">I have not shared or received code or solutions from others.</label></li>
+</ul>
+<hr>
+</section>
+<section id="honor-pledge" class="level3">
+<h3 class="anchored" data-anchor-id="honor-pledge">Honor Pledge</h3>
+<p><strong>Honor Pledge:</strong><br>
+I affirm that all work on this assignment is my own and that I have not shared or received unauthorized assistance.</p>
+<ul>
+<li>Name: Kira Damo</li>
+<li>Date: July 3rd, 2025</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="project-overview-and-data-description" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview-and-data-description">Project Overview and Data Description</h2>
+<hr>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<ul>
+<li>This project assignment focuses on data visualization using <strong>ggplot2</strong> and employs <strong>dplyr</strong> for data manipulation.</li>
+<li>You have been provided with a CSV file containing Olympic athletes’ information, including columns such as:
+<ul>
+<li>Name, Sex, Age, Height, Weight, Team, NOC, Games, Year, Season, City, Sport, Event, Medal</li>
+</ul></li>
+<li>Please use only <strong>ggplot2</strong> for creating the plots in these questions. You may use <strong>dplyr</strong> to preprocess or transform the data if needed.</li>
+<li>The dataset is available in the file <code>athlete_events.csv</code>.</li>
+</ul>
+<hr>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The dataset contains records of Olympic athletes from various editions of the Summer and Winter Olympic Games. Each row typically represents one athlete’s participation in a specific Olympic event. This data can be used to explore relationships among athletes’ physical attributes (e.g., height, weight, age), examine how athletes are distributed among different teams and sports, and analyze the awarding of medals over time.</p>
+<hr>
+</section>
+<section id="explanation-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-variables">Explanation of Variables</h3>
+<p>ID:<br>
+A unique identifier assigned to each row in the dataset.</p>
+<p>Name:<br>
+The athlete’s name. (Some athletes may appear multiple times if they participated in multiple events or editions of the Games.)</p>
+<p>Sex:<br>
+The athlete’s reported sex, typically “M” for male or “F” for female.</p>
+<p>Age:<br>
+The athlete’s age (in years) at the time of competition.<br>
+Numeric values; may include missing data coded as NA.</p>
+<p>Height:<br>
+The athlete’s height (in centimeters).<br>
+Numeric values; may include missing data coded as NA.</p>
+<p>Weight:<br>
+The athlete’s weight (in kilograms).<br>
+Numeric values; may include missing data coded as NA.</p>
+<p>Team:<br>
+The name of the team the athlete represents (often the name of the country or a specific regional team).</p>
+<p>NOC:<br>
+The National Olympic Committee code, a three-letter abbreviation representing the athlete’s country or region (e.g., “USA,” “CHN,” “GBR”).</p>
+<p>Games:<br>
+The string representation of the exact Olympics edition, e.g., “1992 Winter,” “2000 Summer.”</p>
+<p>Year:<br>
+The year in which the recorded Olympic Games took place.</p>
+<p>Season:<br>
+Indicates whether the athlete participated in the Summer or Winter Olympic Games.</p>
+<p>City:<br>
+The city in which the Olympic Games took place.</p>
+<p>Sport:<br>
+The general sport category for the athlete’s event (e.g., “Athletics,” “Swimming,” “Gymnastics,” etc.).</p>
+<p>Event:<br>
+The specific event within the sport in which the athlete competed (e.g., “Basketball Men’s Basketball,” “100m Freestyle Men,” etc.).</p>
+<p>Medal:<br>
+The medal (if any) that the athlete won in their event. Typically “Gold,” “Silver,” “Bronze,” or “NA” if no medal was awarded.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the athlete_events.csv file. This file contains information of the athletes that participated in the olympics held in different years.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"athlete_events.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 271116 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (10): Name, Sex, Team, NOC, Games, Season, City, Sport, Event, Medal
+dbl  (5): ID, Age, Height, Weight, Year
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>olympic_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 271,116 × 15
+      ID Name     Sex     Age Height Weight Team  NOC   Games  Year Season City 
+   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1     1 A Dijia… M        24    180     80 China CHN   1992…  1992 Summer Barc…
+ 2     2 A Lamusi M        23    170     60 China CHN   2012…  2012 Summer Lond…
+ 3     3 Gunnar … M        24     NA     NA Denm… DEN   1920…  1920 Summer Antw…
+ 4     4 Edgar L… M        34     NA     NA Denm… DEN   1900…  1900 Summer Paris
+ 5     5 Christi… F        21    185     82 Neth… NED   1988…  1988 Winter Calg…
+ 6     5 Christi… F        21    185     82 Neth… NED   1988…  1988 Winter Calg…
+ 7     5 Christi… F        25    185     82 Neth… NED   1992…  1992 Winter Albe…
+ 8     5 Christi… F        25    185     82 Neth… NED   1992…  1992 Winter Albe…
+ 9     5 Christi… F        27    185     82 Neth… NED   1994…  1994 Winter Lill…
+10     5 Christi… F        27    185     82 Neth… NED   1994…  1994 Winter Lill…
+# ℹ 271,106 more rows
+# ℹ 3 more variables: Sport &lt;chr&gt;, Event &lt;chr&gt;, Medal &lt;chr&gt;</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<hr>
+<section id="how-many-athletes-are-male-vs.-female" class="level3">
+<h3 class="anchored" data-anchor-id="how-many-athletes-are-male-vs.-female">1. How many athletes are male vs.&nbsp;female?</h3>
+<p>Hint: Create a bar chart comparing the counts of male and female athletes.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sex) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Sex, <span class="at">fill =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Number of Olympic Athletes (Female vs Male)"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by Sex and plotted as a bar plot.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="how-is-age-distributed-among-the-athletes" class="level3">
+<h3 class="anchored" data-anchor-id="how-is-age-distributed-among-the-athletes">2. How is age distributed among the athletes?</h3>
+<p>Hint: Use a histogram to see how ages are spread out across the dataset.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Age) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Age"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Age Distribution of Olympic Athletes"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected Age data and removed all NA values. Created a histogram with the x label as age. There are mostly athletes in their twenties but there are some athletes who are older or are in their late teenage years.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="is-there-a-relationship-between-height-and-weight" class="level3">
+<h3 class="anchored" data-anchor-id="is-there-a-relationship-between-height-and-weight">3. Is there a relationship between height and weight?</h3>
+<p>Hint: A scatter plot can show how height correlates with weight.<br>
+There are too many points in the data, so sampling the data can help visualize it better. (10,000 points is a good sample size.)</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">10000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Height, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Weight, <span class="at">y =</span> Height)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Height vs Weight of Olympic Athletes"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Weight (kg)"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Height (cm)"</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Created a sample of 10,000 and assigned weight to x and height to y. Plotted scatter plot. Taller athletes tend to weigh more.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="how-do-athlete-weights-vary-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-athlete-weights-vary-by-sex">4. How do athlete weights vary by sex?</h3>
+<p>Hint: Use a box plot to compare weight distribution in different groups.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sex) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sex, <span class="at">y =</span> Weight, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Weight Variations by Sex"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Weight (kg)"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by sex and created a boxplot. Removed all NA values. Male athletes tend to weigh more than female athletes by average.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="which-types-of-medals-appear-most-frequently" class="level3">
+<h3 class="anchored" data-anchor-id="which-types-of-medals-appear-most-frequently">5. Which types of medals appear most frequently?</h3>
+<p>Hint: Count how often Gold, Silver, and Bronze appear (excluding NA).</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Medal <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Medal) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_medals =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_medals))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  Medal  n_medals
+  &lt;chr&gt;     &lt;int&gt;
+1 Gold      13372
+2 Bronze    13295
+3 Silver    13116</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered all the medals to be bronze, silver, or gold. Removed all NA values. grouped by medal and counted number of rows for each row. Sorted medal count in descending order.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Gold medals appear most frequently.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="how-does-athletes-age-distribution-compare-between-summer-and-winter-olympics" class="level3">
+<h3 class="anchored" data-anchor-id="how-does-athletes-age-distribution-compare-between-summer-and-winter-olympics">6. How does athletes’ age distribution compare between Summer and Winter Olympics?</h3>
+<p>Hint: Facet by Season (Summer vs.&nbsp;Winter) to visually compare two histograms.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Season, <span class="at">na.rm =</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">fill =</span> Season)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">position =</span> <span class="st">"stack"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Age distribution by Season (Summer vs. Winter)"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Age"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="st">"Season"</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by Season and removed all NA values. Created a histogram that was "stacked" and had an alpha of 0.5.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Summer athletes and winter athletes tend to be around the same age on average.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="how-are-medals-distributed-across-different-sports" class="level3">
+<h3 class="anchored" data-anchor-id="how-are-medals-distributed-across-different-sports">7. How are medals distributed across different sports?</h3>
+<p>Hint: Group by “Sport,” count medals, then create a horizontal bar chart (exclude athletes with no medal).<br>
+Reorder the sports by the count of medals for better visualization.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sport) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Medal <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_medals =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Sport, n_medals), <span class="at">y =</span> n_medals)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"darkgreen"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Medal Distribution Across Different Sports"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of Medals"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Sport"</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by sport and counted only athletes who had a medal. Counted the number of medals that were earned in each sport and plotted a bar chart.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="do-medalists-differ-in-height-from-non-medalists" class="level3">
+<h3 class="anchored" data-anchor-id="do-medalists-differ-in-height-from-non-medalists">8. Do medalists differ in height from non-medalists?</h3>
+<p>Hint: Create a new variable that categorizes athletes as medalists or non-medalists, then compare their heights using a box plot.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">medalists =</span> <span class="fu">ifelse</span>(Medal <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>), <span class="st">"Medalist"</span>, <span class="st">"Non-Medalist"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> medalists, <span class="at">y =</span> Height, <span class="at">fill =</span> medalists)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Medalists"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Height (cm)"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Heights of Medalists vs Non-Medalists"</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Created a new column that identifies if athlete earned a medal or not. Plotted a boxplot and filled according to medalist or not.</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#They are almost the same but medalists' heights are slightly taller than non-medalists.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="how-does-the-medal-count-by-sex-change-over-the-years" class="level3">
+<h3 class="anchored" data-anchor-id="how-does-the-medal-count-by-sex-change-over-the-years">9. How does the medal count by sex change over the years?</h3>
+<p>Hint: Group by year and sex, then visualize how many medals were awarded to each group across time.<br>
+Exclude athletes without medals. Use a line plot to show trends over the years.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Year, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Medal <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Bronze"</span>, <span class="st">"Silver"</span>, <span class="st">"Gold"</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n_medals =</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> n_medals, <span class="at">color =</span> Sex)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of Medals"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Medal count over the years"</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Year'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by Year and Sex. Filetered based on if athlete received medal. Counted number of medals for each sex each year. Ploted a line plot.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#They both increase then fluctuate after 1990.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="which-teams-have-the-largest-number-of-athletes" class="level3">
+<h3 class="anchored" data-anchor-id="which-teams-have-the-largest-number-of-athletes">10. Which teams have the largest number of athletes?</h3>
+<p>Hint: Select the top 10 teams after counting athletes per team, then plot in descending order.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>olympic_data <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Team) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_team_members =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_team_members)) <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n_team_members, <span class="at">y =</span><span class="fu">reorder</span>(Team, n_team_members))) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Teams With The Most Athletes"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of Athletes"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Team"</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project3_Kira_Damo_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by team, counted team members for each team. Sorted the Teams in decreasing order and returned the top 10 Teams. Plotted a bar chart in decreasing order.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The largest teams are the United States, France, Great Britain, Italy, Germany, Canada, Japan, Sweden, Australia, and Hungary.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>Thank you!</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

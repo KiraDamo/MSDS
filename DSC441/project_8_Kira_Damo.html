@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kira Damo">
+
+<title>Project 8</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="project_8_Kira_Damo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project_8_Kira_Damo_files/libs/quarto-html/quarto.js"></script>
+<script src="project_8_Kira_Damo_files/libs/quarto-html/popper.min.js"></script>
+<script src="project_8_Kira_Damo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project_8_Kira_Damo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project_8_Kira_Damo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project_8_Kira_Damo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project_8_Kira_Damo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project_8_Kira_Damo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project_8_Kira_Damo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 8</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kira Damo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="project-guidelines-and-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="project-guidelines-and-requirements">Project Guidelines and Requirements</h2>
+<hr>
+<section id="guidelines" class="level3">
+<h3 class="anchored" data-anchor-id="guidelines">Guidelines</h3>
+<ul>
+<li><strong>Do not share assignment questions or solutions with anyone.</strong> This includes printing, distributing, or posting them on any online platform or social media.</li>
+<li><strong>Peer discussion is permitted for general concepts or troubleshooting, but NOT for sharing code or specific solutions.</strong></li>
+<li>Complete your coding tasks within the R code chunks provided under each question.</li>
+<li>Write clear, well-commented code. Use <code>#</code> to add explanations within code chunks as needed.</li>
+<li>Use the markdown sections to provide written explanations, interpretations, and conclusions.</li>
+<li>Complete the assignment independently. Reference materials such as textbooks, R documentation, and reputable online resources may be used for support.</li>
+<li>Ensure your name is included in the Honor Pledge section.</li>
+</ul>
+<hr>
+</section>
+<section id="required-software-and-packages" class="level3">
+<h3 class="anchored" data-anchor-id="required-software-and-packages">Required Software and Packages</h3>
+<ul>
+<li>R version 4.4.2 or higher is recommended.</li>
+<li>RStudio version 2025.05.1 Build 513 or higher is recommended.</li>
+<li>Make sure that the packages used in the project are installed and loaded in your R environment.</li>
+</ul>
+<hr>
+</section>
+<section id="deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="deliverables">Deliverables</h3>
+<ol type="1">
+<li><strong>Prepare Your Quarto Document:</strong>
+<ul>
+<li><p>Your Quarto <code>.qmd</code> file should be fully executed, with all outputs visible under the relevant code chunks.</p></li>
+<li><p><strong>Do not include any active code for installing packages (such as <code>install.packages()</code>) or using the <code>View()</code> function or functions for checking raw data in your final document.</strong></p>
+<p>When preparing your document for rendering (knitting), certain types of code should be removed or commented out to ensure smooth execution. The table shows three categories of problematic code: package installation commands (which belong in the console), View() functions (which create interactive windows that break during knitting), and basic data inspection commands (which should be replaced with meaningful analysis). Following these guidelines helps create clean, professional R Markdown documents that render without errors.</p></li>
+</ul></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 30%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What to Remove</th>
+<th>Why Remove It</th>
+<th>Example Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package Installation Commands</td>
+<td>These should be run in the console, not in your R Markdown document. They only need to be run once to install packages.</td>
+<td><del><code>install.packages("tidyverse")</code></del></td>
+</tr>
+<tr class="even">
+<td>View() Function Calls</td>
+<td>The <code>View()</code> function opens interactive windows that don’t work in knitted or rendered documents and can cause errors.</td>
+<td><del><code>View(mydata)</code></del> <br> <del><code>mydata |&gt; View()</code></del></td>
+</tr>
+<tr class="odd">
+<td>Raw Data Inspection</td>
+<td>These commands are for interactive data exploration and don’t provide meaningful output in final documents.</td>
+<td><del><code>mydata</code></del> <br> <del><code>head(mydata)</code></del> <br> <del><code>tail(mydata)</code></del> <br> <del><code>str(mydata)</code></del> <br> <del><code>glimpse(mydata)</code></del></td>
+</tr>
+</tbody>
+</table>
+<p>Key Points:</p>
+<ul>
+<li>Package installation should be done separately in the R console</li>
+<li>Interactive viewing functions (<code>View()</code>) don’t work in knitted or rendered documents</li>
+<li>Raw data inspection commands should be replaced with meaningful analysis or visualizations</li>
+</ul>
+<p>Best Practice: Remove or comment out these lines before rendering your final R Markdown document to ensure clean, error-free output.</p>
+<ol start="2" type="1">
+<li><strong>File Naming Convention:</strong>
+<ul>
+<li>Name your project exactly as follows, using all lowercase, underscores, and leading zero for project number:
+<ul>
+<li><code>project_##_firstname_lastname.qmd</code></li>
+<li>Example: <code>project_01_ilyas_ustun.qmd</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Rendering:</strong>
+<ul>
+<li>Compile your Quarto document into an HTML report by clicking the <code>Render</code> button in RStudio. This will produce a <code>project_##_firstname_lastname.html</code> file in the same directory.</li>
+</ul></li>
+<li><strong>Submission:</strong>
+<ul>
+<li>Submit both the <code>.qmd</code> and <code>.html</code> files to the designated submission folder.</li>
+</ul></li>
+</ol>
+<hr>
+<blockquote class="blockquote">
+<p><strong>File Management Tip:</strong> If you are going to read in a data file, store all data files (e.g., <code>.csv</code>, <code>.xlsx</code>, <code>.xls</code>, <code>.txt</code>) in the same folder as your script for convenience. Otherwise, specify the full file path for your data.</p>
+</blockquote>
+<hr>
+<blockquote class="blockquote">
+<p>If you encounter errors when rendering your document to HTML, carefully review and correct your code. The entire document must run without errors for successful rendering.</p>
+</blockquote>
+<hr>
+</section>
+<section id="evaluation-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-criteria">Evaluation Criteria</h3>
+<ul>
+<li><strong>Accuracy and Completeness:</strong> Each question is worth equal points. The project is graded out of <strong>100 points</strong>.</li>
+<li><strong>Code Output</strong>: Your Quarto .qmd file should be fully executed, with all outputs visible under the relevant code chunks.</li>
+<li><strong>Code Quality:</strong> Code should be correct, well-structured, and commented appropriately.</li>
+<li><strong>Visualizations:</strong> Data visualizations must be accurate, relevant, and effectively labeled.</li>
+<li><strong>Adherence to Guidelines:</strong> File naming, formatting, and submission instructions must be followed.</li>
+</ul>
+<hr>
+</section>
+<section id="troubleshooting-and-support" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-and-support">Troubleshooting and Support</h3>
+<p>If you require assistance or experience technical issues while working on the project, please follow these steps to get the help you need:</p>
+<ul>
+<li>Check Online Resources: First, try to find the answer to your question or solution to your problem by checking online resources such as:
+<ul>
+<li>Stack Overflow (for R programming-related issues)</li>
+<li>RStudio Community (for RStudio and R-related discussions)</li>
+<li>R-bloggers (for R tutorials, tips, and best practices)</li>
+</ul></li>
+<li>Discussion Forum: If you can’t find the information you’re looking for, post your question on the course discussion forum. Your peers or instructors may have encountered a similar issue and can provide insights or guidance on R or data science concepts.</li>
+<li>Provide Context: When posting your question, please include relevant details such as:
+<ul>
+<li>A clear description of the problem or question</li>
+<li>The code you are working with (if applicable)</li>
+<li>Any error messages you are encountering</li>
+<li>The name of the dataset or context related to your question</li>
+</ul></li>
+<li>Contact the professor: If you’re unable to resolve your issue through the above steps, or if your question is of a personal or sensitive nature, please don’t hesitate to contact Dr.&nbsp;Ilyas Ustun directly.</li>
+</ul>
+<p>By following these steps, you’ll not only potentially get a quicker resolution to your issue, but you’ll also contribute to building a resourceful and supportive community within the course.</p>
+<hr>
+</section>
+<section id="submission-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="submission-checklist">Submission Checklist</h3>
+<p>Before submitting your assignment, please confirm each item:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">My <code>.qmd</code> file is named correctly (<code>project_##_firstname_lastname.qmd</code>) and runs without errors.</label></li>
+<li><label><input type="checkbox" checked="">All code chunks have been executed, and outputs are visible under each question.</label></li>
+<li><label><input type="checkbox" checked="">There is no active <code>install.packages()</code> or <code>View()</code> code (these are commented out or removed).</label></li>
+<li><label><input type="checkbox" checked="">The final HTML report is rendered and saved in the same directory as the <code>.qmd</code> file.</label></li>
+<li><label><input type="checkbox" checked="">Both <code>.qmd</code> and <code>.html</code> files are uploaded to the designated submission folder.</label></li>
+<li><label><input type="checkbox" checked="">All data visualizations are appropriate, clear, and effectively labeled.</label></li>
+<li><label><input type="checkbox" checked="">My name and the date are included in the Honor Pledge section.</label></li>
+<li><label><input type="checkbox" checked="">I have not shared or received code or solutions from others.</label></li>
+</ul>
+<hr>
+</section>
+<section id="honor-pledge" class="level3">
+<h3 class="anchored" data-anchor-id="honor-pledge">Honor Pledge</h3>
+<p><strong>Honor Pledge:</strong><br>
+I affirm that all work on this assignment is my own and that I have not shared or received unauthorized assistance.</p>
+<ul>
+<li>Name: Kira Damo</li>
+<li>Date: July 19th, 2025</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="credit-risk-classification-with-decision-trees" class="level1">
+<h1>Credit Risk Classification with Decision Trees</h1>
+<hr>
+<section id="project-overview-and-data-description" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview-and-data-description">Project Overview and Data Description</h2>
+<hr>
+<section id="what-youll-learn" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h3>
+<ul>
+<li>How to prepare data for machine learning, including creating training and testing sets.</li>
+<li>How to build, tune, and visualize decision tree models for classification.</li>
+<li>How to evaluate model performance using a confusion matrix and key metrics like Precision, Recall, and F1-Score.</li>
+<li>How to interpret model results, identify important features, and compare different models to make a final recommendation.</li>
+</ul>
+<hr>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>In this project, you will step into the role of a data analyst at a financial institution. Your task is to use decision tree models to predict whether a loan applicant is a “Good” or “Bad” credit risk. This is a classic classification problem with real-world implications, as accurately identifying high-risk applicants can save a company from significant financial loss. You will use the <code>GermanCredit</code> dataset to build, evaluate, and interpret your models.</p>
+<hr>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>We will be using the <strong><code>GermanCredit</code></strong> dataset, which is conveniently included in the <code>caret</code> R package. This dataset contains information on 1000 loan applicants, with 20 attributes describing their financial status, credit history, and personal information. The goal is to predict the <code>Class</code> variable, which indicates the applicant’s credit risk.</p>
+<hr>
+</section>
+<section id="explanation-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-variables">Explanation of Variables</h3>
+<p>The dataset has 21 columns in its original form. The target variable is <code>Class</code>, and the rest are predictors. Many predictors are categorical and have been one-hot encoded by <code>caret</code> for modeling, resulting in more columns. Here are some of the most important original variables:</p>
+<ul>
+<li><strong><code>Class</code></strong>: The target variable. A factor with two levels: “Good” and “Bad” credit risk.</li>
+<li><strong><code>Duration</code></strong>: The duration of the loan in months. (Numeric)</li>
+<li><strong><code>CreditAmount</code></strong>: The amount of the credit loan. (Numeric)</li>
+<li><strong><code>Age</code></strong>: Age of the applicant in years. (Numeric)</li>
+<li><strong><code>CheckingAccountStatus</code></strong>: The status of the applicant’s checking account (e.g., <code>&lt; 0 DM</code>, <code>0 &lt;= ... &lt; 200 DM</code>, <code>no checking account</code>).</li>
+<li><strong><code>CreditHistory</code></strong>: The applicant’s past credit history (e.g., <code>critical account</code>, <code>all credits paid back duly</code>).</li>
+</ul>
+<p>For a full description of all variables, you can consult the dataset’s documentation by running <code>?GermanCredit</code> in your R console after loading the <code>caret</code> package.</p>
+<hr>
+</section>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>This first code chunk will load all the necessary libraries for the project and the <code>GermanCredit</code> dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages if you don't have them already</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("dplyr", "ggplot2", "caret", "rpart", "rattle", "vip"))</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the libraries</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)       <span class="co"># For data manipulation</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)     <span class="co"># For data visualization</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)       <span class="co"># For training/testing, cross-validation, and evaluation</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)       <span class="co"># For building the decision tree models</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rattle)      <span class="co"># For creating beautiful decision tree plots</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)         <span class="co"># For variable importance plots</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"GermanCredit"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<hr>
+<section id="question-1-initial-data-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-initial-data-exploration">Question 1: Initial Data Exploration</h3>
+<p>Before we build any models, we need to understand the data we are working with. A good first step is to check its dimensions and structure.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Examine the structure of the <code>GermanCredit</code> dataframe to see the variable types and the first few rows of data.</li>
+<li>Find out the exact number of rows (observations) and columns (variables) in the dataset.</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>There are functions in R that are specifically designed to show the “structure” of an object.</li>
+<li>Another basic R function can give you the dimensions of a dataframe.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>GermanCredit <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1000 obs. of  62 variables:
+ $ Duration                              : int  6 48 12 42 24 36 24 36 12 30 ...
+ $ Amount                                : int  1169 5951 2096 7882 4870 9055 2835 6948 3059 5234 ...
+ $ InstallmentRatePercentage             : int  4 2 2 2 3 2 3 2 2 4 ...
+ $ ResidenceDuration                     : int  4 2 3 4 4 4 4 2 4 2 ...
+ $ Age                                   : int  67 22 49 45 53 35 53 35 61 28 ...
+ $ NumberExistingCredits                 : int  2 1 1 1 2 1 1 1 1 2 ...
+ $ NumberPeopleMaintenance               : int  1 1 2 2 2 2 1 1 1 1 ...
+ $ Telephone                             : num  0 1 1 1 1 0 1 0 1 1 ...
+ $ ForeignWorker                         : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Class                                 : Factor w/ 2 levels "Bad","Good": 2 1 2 2 1 2 2 2 2 1 ...
+ $ CheckingAccountStatus.lt.0            : num  1 0 0 1 1 0 0 0 0 0 ...
+ $ CheckingAccountStatus.0.to.200        : num  0 1 0 0 0 0 0 1 0 1 ...
+ $ CheckingAccountStatus.gt.200          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ CheckingAccountStatus.none            : num  0 0 1 0 0 1 1 0 1 0 ...
+ $ CreditHistory.NoCredit.AllPaid        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ CreditHistory.ThisBank.AllPaid        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ CreditHistory.PaidDuly                : num  0 1 0 1 0 1 1 1 1 0 ...
+ $ CreditHistory.Delay                   : num  0 0 0 0 1 0 0 0 0 0 ...
+ $ CreditHistory.Critical                : num  1 0 1 0 0 0 0 0 0 1 ...
+ $ Purpose.NewCar                        : num  0 0 0 0 1 0 0 0 0 1 ...
+ $ Purpose.UsedCar                       : num  0 0 0 0 0 0 0 1 0 0 ...
+ $ Purpose.Furniture.Equipment           : num  0 0 0 1 0 0 1 0 0 0 ...
+ $ Purpose.Radio.Television              : num  1 1 0 0 0 0 0 0 1 0 ...
+ $ Purpose.DomesticAppliance             : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Purpose.Repairs                       : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Purpose.Education                     : num  0 0 1 0 0 1 0 0 0 0 ...
+ $ Purpose.Vacation                      : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Purpose.Retraining                    : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Purpose.Business                      : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Purpose.Other                         : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ SavingsAccountBonds.lt.100            : num  0 1 1 1 1 0 0 1 0 1 ...
+ $ SavingsAccountBonds.100.to.500        : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ SavingsAccountBonds.500.to.1000       : num  0 0 0 0 0 0 1 0 0 0 ...
+ $ SavingsAccountBonds.gt.1000           : num  0 0 0 0 0 0 0 0 1 0 ...
+ $ SavingsAccountBonds.Unknown           : num  1 0 0 0 0 1 0 0 0 0 ...
+ $ EmploymentDuration.lt.1               : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ EmploymentDuration.1.to.4             : num  0 1 0 0 1 1 0 1 0 0 ...
+ $ EmploymentDuration.4.to.7             : num  0 0 1 1 0 0 0 0 1 0 ...
+ $ EmploymentDuration.gt.7               : num  1 0 0 0 0 0 1 0 0 0 ...
+ $ EmploymentDuration.Unemployed         : num  0 0 0 0 0 0 0 0 0 1 ...
+ $ Personal.Male.Divorced.Seperated      : num  0 0 0 0 0 0 0 0 1 0 ...
+ $ Personal.Female.NotSingle             : num  0 1 0 0 0 0 0 0 0 0 ...
+ $ Personal.Male.Single                  : num  1 0 1 1 1 1 1 1 0 0 ...
+ $ Personal.Male.Married.Widowed         : num  0 0 0 0 0 0 0 0 0 1 ...
+ $ Personal.Female.Single                : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ OtherDebtorsGuarantors.None           : num  1 1 1 0 1 1 1 1 1 1 ...
+ $ OtherDebtorsGuarantors.CoApplicant    : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ OtherDebtorsGuarantors.Guarantor      : num  0 0 0 1 0 0 0 0 0 0 ...
+ $ Property.RealEstate                   : num  1 1 1 0 0 0 0 0 1 0 ...
+ $ Property.Insurance                    : num  0 0 0 1 0 0 1 0 0 0 ...
+ $ Property.CarOther                     : num  0 0 0 0 0 0 0 1 0 1 ...
+ $ Property.Unknown                      : num  0 0 0 0 1 1 0 0 0 0 ...
+ $ OtherInstallmentPlans.Bank            : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ OtherInstallmentPlans.Stores          : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ OtherInstallmentPlans.None            : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Housing.Rent                          : num  0 0 0 0 0 0 0 1 0 0 ...
+ $ Housing.Own                           : num  1 1 1 0 0 0 1 0 1 1 ...
+ $ Housing.ForFree                       : num  0 0 0 1 1 1 0 0 0 0 ...
+ $ Job.UnemployedUnskilled               : num  0 0 0 0 0 0 0 0 0 0 ...
+ $ Job.UnskilledResident                 : num  0 0 1 0 0 1 0 0 1 0 ...
+ $ Job.SkilledEmployee                   : num  1 1 0 1 1 0 1 0 0 0 ...
+ $ Job.Management.SelfEmp.HighlyQualified: num  0 0 0 0 0 0 0 1 0 1 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Thre are 1000 observations and 62 variables (columns)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-2-understanding-the-target-variable" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-understanding-the-target-variable">Question 2: Understanding the Target Variable</h3>
+<p>In a classification problem, it’s crucial to understand the distribution of your target variable. An imbalanced dataset, where one class is much more common than the other, can affect model training and evaluation.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Calculate the number of “Good” and “Bad” credit risks in the <code>Class</code> column.</li>
+<li>Convert these counts into proportions (percentages) to see the distribution more clearly. What is the percentage of “Bad” credit risks in the dataset?</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>To count occurrences in a single column (a vector), you can use a function that creates a frequency table.</li>
+<li>The output of the frequency table can be passed to another function that calculates proportions.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(GermanCredit<span class="sc">$</span>Class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Bad Good 
+ 300  700 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="question-3-creating-a-stratified-train-test-split" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-creating-a-stratified-train-test-split">Question 3: Creating a Stratified Train-Test Split</h3>
+<p>To build a reliable model, we must train it on one portion of the data and test it on another, completely separate portion. This helps us see how well the model generalizes to new, unseen data. For imbalanced datasets like ours, a stratified split is essential to ensure both the train and test sets have the same proportion of classes as the original dataset.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Split the <code>GermanCredit</code> data into a training set (75% of the data) and a testing set (25%).</li>
+<li>Use a stratified sampling method based on the <code>Class</code> variable to ensure the 70/30 split is maintained in both sets. Verify this by checking the proportions in the resulting <code>train_data</code> and <code>test_data</code>.</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The <code>caret</code> package has a function specifically for creating data partitions. Look for an argument within this function that lets you specify the column to stratify by.</li>
+<li>Remember to use <code>set.seed()</code> before creating the partition to make your split reproducible. We will use <code>set.seed(123)</code>.</li>
+<li>After creating the index, you can use standard R subsetting (<code>[]</code>) to create the two dataframes.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">=</span> <span class="fu">createDataPartition</span>(<span class="at">y=</span>GermanCredit<span class="sc">$</span>Class, <span class="at">p=</span><span class="fl">0.75</span>, <span class="at">list=</span><span class="cn">FALSE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">=</span> GermanCredit[idx, ]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">=</span> GermanCredit[<span class="sc">-</span>idx, ]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>GermanCredit<span class="sc">$</span>Class <span class="sc">|&gt;</span> <span class="fu">table</span>() <span class="sc">|&gt;</span> <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Bad Good 
+ 0.3  0.7 </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="question-4-building-and-visualizing-a-baseline-decision-tree" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-building-and-visualizing-a-baseline-decision-tree">Question 4: Building and Visualizing a Baseline Decision Tree</h3>
+<p>Let’s build our first model. This will be a “baseline” decision tree using all available predictors. This gives us a starting point to compare against more complex or refined models later. We will then visualize it to understand the rules it has learned.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Train a decision tree model using the <code>rpart</code> function. The model should predict <code>Class</code> using all other variables in the <code>train_data</code> as predictors.</li>
+<li>Create an easy-to-read plot of the resulting tree. Based on the plot, what is the single most important predictor and the rule it uses for the very first split?</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The formula <code>Target ~ .</code> is a shortcut in R to mean “predict Target using all other columns.”</li>
+<li>The <code>rattle</code> package contains a function that produces much more visually appealing plots than the base <code>plot()</code> function for <code>rpart</code> objects.</li>
+<li>The top node of the tree visualization shows the first and most important split.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>baseline_model <span class="ot">=</span> <span class="fu">rpart</span>(Class <span class="sc">~</span> ., <span class="at">data=</span>train_data)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fancyRpartPlot</span>(baseline_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_8_Kira_Damo_files/figure-html/solution-4-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The first and singly most important predictor is CheckingAddountStatus.none is less than 0.5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-5-evaluating-the-baseline-model" class="level3">
+<h3 class="anchored" data-anchor-id="question-5-evaluating-the-baseline-model">Question 5: Evaluating the Baseline Model</h3>
+<p>A model isn’t useful until we know how well it performs. We will now use our <code>test_data</code> to evaluate the baseline model we just built. We’ll generate a confusion matrix to see where the model makes correct and incorrect predictions.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Use the <code>baseline_model</code> to predict the <code>Class</code> for the <code>test_data</code>.</li>
+<li>Generate a detailed confusion matrix comparing the model’s predictions to the actual values in <code>test_data</code>. Specifically, find the model’s overall <strong>Accuracy</strong> and the <strong>Precision</strong>, <strong>Recall</strong>, and <strong>F1-Score</strong> for the “Bad” class.</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The <code>predict()</code> function has a <code>type</code> argument. For classification, you’ll want to get class labels as output, not probabilities.</li>
+<li>In <code>caret</code>’s <code>confusionMatrix()</code> function, use <code>mode = "everything"</code> to get all the detailed statistics.</li>
+<li>Set the <code>positive</code> argument in the confusion matrix function to <code>"Bad"</code> to ensure Precision and Recall are calculated from the perspective of correctly identifying bad credit risks.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prediction <span class="ot">=</span> <span class="fu">predict</span>(baseline_model, <span class="at">newdata=</span>test_data, <span class="at">type=</span><span class="st">"class"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>baseline_cm <span class="ot">=</span> <span class="fu">confusionMatrix</span>(test_data<span class="sc">$</span>Class, prediction, <span class="at">mode=</span><span class="st">"everything"</span>, <span class="at">positive=</span><span class="st">"Bad"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>baseline_cm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction Bad Good
+      Bad   32   43
+      Good  34  141
+                                          
+               Accuracy : 0.692           
+                 95% CI : (0.6307, 0.7486)
+    No Information Rate : 0.736           
+    P-Value [Acc &gt; NIR] : 0.9487          
+                                          
+                  Kappa : 0.2406          
+                                          
+ Mcnemar's Test P-Value : 0.3619          
+                                          
+            Sensitivity : 0.4848          
+            Specificity : 0.7663          
+         Pos Pred Value : 0.4267          
+         Neg Pred Value : 0.8057          
+              Precision : 0.4267          
+                 Recall : 0.4848          
+                     F1 : 0.4539          
+             Prevalence : 0.2640          
+         Detection Rate : 0.1280          
+   Detection Prevalence : 0.3000          
+      Balanced Accuracy : 0.6256          
+                                          
+       'Positive' Class : Bad             
+                                          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Accuracy : 0.692 </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Precision : 0.4267          </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Recall : 0.4848          </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#F1 : 0.4539   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="the-following-questions-build-on-each-other-to-create-and-refine-a-final-model." class="level3">
+<h3 class="anchored" data-anchor-id="the-following-questions-build-on-each-other-to-create-and-refine-a-final-model."><strong>The following questions build on each other to create and refine a final model.</strong></h3>
+<hr>
+</section>
+<section id="question-6-improving-the-model-with-cross-validation" class="level3">
+<h3 class="anchored" data-anchor-id="question-6-improving-the-model-with-cross-validation">Question 6: Improving the Model with Cross-Validation</h3>
+<p>Our baseline model was grown to its maximum depth, which risks overfitting to the training data. A better approach is to “prune” the tree by finding an optimal complexity parameter (<code>cp</code>). We can use <code>caret</code>’s <code>train()</code> function to do this automatically using 10-fold cross-validation. This is the beginning of our four-part model improvement process.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Use the <code>train()</code> function to build a new decision tree model. Configure it to use 10-fold cross-validation (<code>cv</code>) to automatically tune the <code>cp</code> hyperparameter.</li>
+<li>Print the resulting tuned model object. What was the final <code>cp</code> value chosen by the cross-validation process?</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The <code>trainControl()</code> function is used to set up the cross-validation method.</li>
+<li>In <code>train()</code>, you need to specify the <code>method</code> as <code>"rpart"</code>. The function will then know to tune the <code>cp</code> parameter for a decision tree.</li>
+<li>The best <code>cp</code> value will be listed in the printed output of the final trained model object.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the training control for 10-fold cross-validation</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"cv"</span>, <span class="at">number =</span> <span class="dv">10</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use train() to find the optimal cp value</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>tuned_model <span class="ot">&lt;-</span> <span class="fu">train</span>(Class <span class="sc">~</span> ., </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> train_data, </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">method =</span> <span class="st">"rpart"</span>, </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trControl =</span> ctrl,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">tuneLength =</span> <span class="dv">10</span>) <span class="co"># Test 10 different cp values</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the results to see the best cp</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tuned_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CART 
+
+750 samples
+ 61 predictor
+  2 classes: 'Bad', 'Good' 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 674, 675, 676, 675, 674, 675, ... 
+Resampling results across tuning parameters:
+
+  cp           Accuracy   Kappa    
+  0.000000000  0.6999080  0.2744011
+  0.004074074  0.7092423  0.2825272
+  0.008148148  0.7159450  0.2860266
+  0.012222222  0.7226121  0.2985356
+  0.016296296  0.7280161  0.3181390
+  0.020370370  0.7199981  0.2775746
+  0.024444444  0.7134011  0.2529903
+  0.028518519  0.7067871  0.2462004
+  0.032592593  0.7081385  0.2236344
+  0.036666667  0.7054367  0.2047836
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was cp = 0.0162963.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tuned_model<span class="sc">$</span>bestTune</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         cp
+5 0.0162963</code></pre>
+</div>
+</div>
+<p>The <code>trainControl()</code> function defines our resampling strategy: 10-fold cross-validation (<code>method = "cv", number = 10</code>). We then pass this control object to the <code>train()</code> function. <code>train()</code> systematically builds and tests decision trees with different <code>cp</code> values (we asked it to test 10 values with <code>tuneLength = 10</code>). It uses the cross-validation results to see which <code>cp</code> value generalizes the best. The printed output shows the results for each <code>cp</code> tested. The final model uses the <code>cp</code> value that resulted in the highest Accuracy during cross-validation.</p>
+<hr>
+</section>
+<section id="question-7-evaluating-the-tuned-model" class="level3">
+<h3 class="anchored" data-anchor-id="question-7-evaluating-the-tuned-model">Question 7: Evaluating the Tuned Model</h3>
+<p>Now that we have a model tuned with cross-validation, let’s see if this more robust approach actually improved performance on our unseen <code>test_data</code>.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Use the <code>tuned_model</code> from the previous question to make predictions on the <code>test_data</code>.</li>
+<li>Generate a new confusion matrix for these predictions. How do the <strong>Accuracy</strong>, <strong>Precision</strong>, <strong>Recall</strong>, and <strong>F1-Score</strong> (for the “Bad” class) of this tuned model compare to our baseline model from Question 5?</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The prediction process is the same, but you will use your new <code>tuned_model</code> object.</li>
+<li>You will again use the <code>confusionMatrix()</code> function with <code>positive = "Bad"</code>.</li>
+<li>Compare the key metrics from this new confusion matrix directly with the values you found in Question 5.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>prediction_tuned <span class="ot">=</span> <span class="fu">predict</span>(tuned_model, <span class="at">newdata=</span>test_data, <span class="at">type=</span><span class="st">"raw"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>tuned_cm <span class="ot">=</span> <span class="fu">confusionMatrix</span>(test_data<span class="sc">$</span>Class, prediction_tuned, <span class="at">mode=</span><span class="st">"everything"</span>, <span class="at">positive=</span><span class="st">"Bad"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tuned_cm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction Bad Good
+      Bad   35   40
+      Good  45  130
+                                          
+               Accuracy : 0.66            
+                 95% CI : (0.5976, 0.7185)
+    No Information Rate : 0.68            
+    P-Value [Acc &gt; NIR] : 0.7731          
+                                          
+                  Kappa : 0.2056          
+                                          
+ Mcnemar's Test P-Value : 0.6644          
+                                          
+            Sensitivity : 0.4375          
+            Specificity : 0.7647          
+         Pos Pred Value : 0.4667          
+         Neg Pred Value : 0.7429          
+              Precision : 0.4667          
+                 Recall : 0.4375          
+                     F1 : 0.4516          
+             Prevalence : 0.3200          
+         Detection Rate : 0.1400          
+   Detection Prevalence : 0.3000          
+      Balanced Accuracy : 0.6011          
+                                          
+       'Positive' Class : Bad             
+                                          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#only would allow me to run if i changed type to raw</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Accuracy : 0.66</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Precision : 0.4667          </span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Recall : 0.4375</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#F1 : 0.4516 </span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#it is slightly weaker than the question 5 baseline model.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-8-identifying-the-most-important-features" class="level3">
+<h3 class="anchored" data-anchor-id="question-8-identifying-the-most-important-features">Question 8: Identifying the Most Important Features</h3>
+<p>Understanding <em>which</em> variables the model relies on most is crucial for interpretation and explaining the results to stakeholders. The <code>vip</code> package provides a clear and effective way to visualize feature importance.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Use the <code>tuned_model</code> from Question 7 to calculate variable importance.</li>
+<li>Create a variable importance plot showing the top 10 most influential predictors. What are the top 3 variables?</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The <code>vip</code> package has a primary function named after the package itself.</li>
+<li>This function takes your trained model object as its main input. You can specify the number of features you want to see.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(tuned_model, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_8_Kira_Damo_files/figure-html/solution-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#used vip command and set n=10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-9-building-and-evaluating-a-simpler-model" class="level3">
+<h3 class="anchored" data-anchor-id="question-9-building-and-evaluating-a-simpler-model">Question 9: Building and Evaluating a Simpler Model</h3>
+<p>Complex models are not always better. A simpler model that uses only the most important predictors can be easier to explain, faster to run, and less prone to overfitting. Let’s build a model using only the top 10 predictors we identified.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Build a new <code>rpart</code> model using <em>only</em> the top 10 most important variables from the plot in Question 8.</li>
+<li>Evaluate this new “simple” model by generating a confusion matrix on the <code>test_data</code>. How does its F1-Score compare to the <code>tuned_model</code>?</li>
+<li>Use the same evaluation metrics as before: <strong>Accuracy</strong>, <strong>Precision</strong>, <strong>Recall</strong>, and <strong>F1-Score</strong> for the “Bad” class.</li>
+<li>Use the same cp value as the <code>tuned_model</code> for consistency.</li>
+<li>Visualize the the decision tree created by this simpler model.</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Instead of <code>Class ~ .</code>, you will need to write the formula explicitly, like <code>Class ~ Var1 + Var2 + Var3 + Var4 + Var5</code>.</li>
+<li>Make sure to use the exact variable names from the variable importance plot.</li>
+<li>The evaluation process (predict and <code>confusionMatrix</code>) is the same as before.</li>
+<li>In <code>rpart()</code> to provide a specific value for cp use <code>control = rpart.control(cp = tuned_model$bestTune$cp)</code>.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the names of the top 10 variables from the VIP plot</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You code here</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a simpler model with only the top 5 features</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>simple_model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(<span class="at">formula =</span> Class <span class="sc">~</span> CheckingAccountStatus.none <span class="sc">+</span> CreditHistory.Critical <span class="sc">+</span> Duration <span class="sc">+</span> CheckingAccountStatus.lt<span class="fl">.0</span> <span class="sc">+</span> Amount <span class="sc">+</span> CreditHistory.NoCredit.AllPaid <span class="sc">+</span>CheckingAccountStatus.gt<span class="fl">.200</span> <span class="sc">+</span> Purpose.NewCar <span class="sc">+</span> OtherDebtorsGuarantors.Guarantor <span class="sc">+</span> SavingsAccountBonds.Unknown,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> tuned_model<span class="sc">$</span>bestTune<span class="sc">$</span>cp),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> train_data, </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">"class"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the simple model</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># You code here</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>prediction_simple <span class="ot">=</span> <span class="fu">predict</span>(simple_model, <span class="at">newdata=</span>test_data, <span class="at">type=</span><span class="st">"class"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>simple_cm <span class="ot">=</span> <span class="fu">confusionMatrix</span>(test_data<span class="sc">$</span>Class, prediction_simple, <span class="at">mode=</span><span class="st">"everything"</span>, <span class="at">positive=</span><span class="st">"Bad"</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>simple_cm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction Bad Good
+      Bad   35   40
+      Good  45  130
+                                          
+               Accuracy : 0.66            
+                 95% CI : (0.5976, 0.7185)
+    No Information Rate : 0.68            
+    P-Value [Acc &gt; NIR] : 0.7731          
+                                          
+                  Kappa : 0.2056          
+                                          
+ Mcnemar's Test P-Value : 0.6644          
+                                          
+            Sensitivity : 0.4375          
+            Specificity : 0.7647          
+         Pos Pred Value : 0.4667          
+         Neg Pred Value : 0.7429          
+              Precision : 0.4667          
+                 Recall : 0.4375          
+                     F1 : 0.4516          
+             Prevalence : 0.3200          
+         Detection Rate : 0.1400          
+   Detection Prevalence : 0.3000          
+      Balanced Accuracy : 0.6011          
+                                          
+       'Positive' Class : Bad             
+                                          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Accuracy : 0.66</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Precision : 0.4667          </span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Recall : 0.4375          </span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#F1 : 0.4516</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot of the tree</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You code here</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">fancyRpartPlot</span>(simple_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_8_Kira_Damo_files/figure-html/solution-9-2-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="question-10-final-model-comparison-and-recommendation" class="level3">
+<h3 class="anchored" data-anchor-id="question-10-final-model-comparison-and-recommendation">Question 10: Final Model Comparison and Recommendation</h3>
+<p>We have now built and evaluated three different models: a baseline, a tuned model, and a simple model. The final step is to bring all the results together to make a clear, data-driven recommendation.</p>
+<p><strong>Task:</strong></p>
+<ul>
+<li>Create a single summary dataframe that contains the <strong>Accuracy</strong>, <strong>Precision</strong>, <strong>Recall</strong>, and <strong>F1-Score</strong> for all three models (<code>baseline_model</code>, <code>tuned_model</code>, <code>simple_model</code>).</li>
+<li>Based on this summary, which model would you recommend to the bank and why? Justify your choice by considering the trade-off between performance (especially for the “Bad” class) and model simplicity.</li>
+</ul>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>You can access specific statistics from the confusion matrix objects using <code>cm_object$overall['StatisticName']</code> and <code>cm_object$byClass['StatisticName']</code>.</li>
+<li>Create a <code>data.frame()</code> by combining these extracted values into columns.</li>
+<li>Your final answer should be a written recommendation, not just code. Think about what a bank would value most: pure performance or a balance of performance and interpretability.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Accuracy <span class="ot">=</span> <span class="fu">c</span>(baseline_cm<span class="sc">$</span>overall[<span class="st">'Accuracy'</span>], tuned_cm<span class="sc">$</span>overall[<span class="st">'Accuracy'</span>], simple_cm<span class="sc">$</span>overall[<span class="st">'Accuracy'</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>Precision <span class="ot">=</span> <span class="fu">c</span>(baseline_cm<span class="sc">$</span>byClass[<span class="st">'Precision'</span>], tuned_cm<span class="sc">$</span>byClass[<span class="st">'Precision'</span>], simple_cm<span class="sc">$</span>byClass[<span class="st">'Precision'</span>])</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>Recall <span class="ot">=</span> <span class="fu">c</span>(baseline_cm<span class="sc">$</span>byClass[<span class="st">'Recall'</span>], tuned_cm<span class="sc">$</span>byClass[<span class="st">'Recall'</span>], simple_cm<span class="sc">$</span>byClass[<span class="st">'Recall'</span>])</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>F1 <span class="ot">=</span> <span class="fu">c</span>(baseline_cm<span class="sc">$</span>byClass[<span class="st">'F1'</span>], tuned_cm<span class="sc">$</span>byClass[<span class="st">'F1'</span>], simple_cm<span class="sc">$</span>byClass[<span class="st">'F1'</span>])</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>Model <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Baseline Model"</span>, <span class="st">"Tuned Model"</span>, <span class="st">"Simple Model"</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>metrics_df <span class="ot">=</span> <span class="fu">data.frame</span>(Model, Accuracy, Precision, Recall, F1)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>metrics_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Model Accuracy Precision    Recall        F1
+1 Baseline Model    0.692 0.4266667 0.4848485 0.4539007
+2    Tuned Model    0.660 0.4666667 0.4375000 0.4516129
+3   Simple Model    0.660 0.4666667 0.4375000 0.4516129</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The model that I would reccomend is the Baseline model due to its high Recall rate. Having a high recall rate makes the model better at detecting risks and potential fraud. Although the tuned model and simple model have the same numbers across the table, a more narrow model will be easier to interpret. For readability, simple model would be best but for effectively detecting "bad" cases, basline is best.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

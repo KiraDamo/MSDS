@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kira Damo">
+
+<title>Project 5: Data Joins</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="project_5_Kira_Damo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project_5_Kira_Damo_files/libs/quarto-html/quarto.js"></script>
+<script src="project_5_Kira_Damo_files/libs/quarto-html/popper.min.js"></script>
+<script src="project_5_Kira_Damo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project_5_Kira_Damo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project_5_Kira_Damo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project_5_Kira_Damo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project_5_Kira_Damo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project_5_Kira_Damo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project_5_Kira_Damo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 5: Data Joins</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kira Damo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="project-guidelines-and-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="project-guidelines-and-requirements">Project Guidelines and Requirements</h2>
+<hr>
+<section id="guidelines" class="level3">
+<h3 class="anchored" data-anchor-id="guidelines">Guidelines</h3>
+<ul>
+<li><strong>Do not share assignment questions or solutions with anyone.</strong> This includes printing, distributing, or posting them on any online platform or social media.</li>
+<li><strong>Peer discussion is permitted for general concepts or troubleshooting, but NOT for sharing code or specific solutions.</strong></li>
+<li>Complete your coding tasks within the R code chunks provided under each question.</li>
+<li>Write clear, well-commented code. Use <code>#</code> to add explanations within code chunks as needed.</li>
+<li>Use the markdown sections to provide written explanations, interpretations, and conclusions.</li>
+<li>Complete the assignment independently. Reference materials such as textbooks, R documentation, and reputable online resources may be used for support.</li>
+<li>Ensure your name is included in the Honor Pledge section.</li>
+</ul>
+<hr>
+</section>
+<section id="required-software-and-packages" class="level3">
+<h3 class="anchored" data-anchor-id="required-software-and-packages">Required Software and Packages</h3>
+<ul>
+<li>R version 4.4.2 or higher is recommended.</li>
+<li>RStudio version 2025.05.1 Build 513 or higher is recommended.</li>
+<li>Make sure that the packages used in the project are installed and loaded in your R environment.</li>
+</ul>
+<hr>
+</section>
+<section id="deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="deliverables">Deliverables</h3>
+<ol type="1">
+<li><strong>Prepare Your Quarto Document:</strong>
+<ul>
+<li><p>Your Quarto <code>.qmd</code> file should be fully executed, with all outputs visible under the relevant code chunks.</p></li>
+<li><p><strong>Do not include any active code for installing packages (such as <code>install.packages()</code>) or using the <code>View()</code> function or functions for checking raw data in your final document.</strong></p>
+<p>When preparing your document for rendering (knitting), certain types of code should be removed or commented out to ensure smooth execution. The table shows three categories of problematic code: package installation commands (which belong in the console), View() functions (which create interactive windows that break during knitting), and basic data inspection commands (which should be replaced with meaningful analysis). Following these guidelines helps create clean, professional R Markdown documents that render without errors.</p></li>
+</ul></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 30%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What to Remove</th>
+<th>Why Remove It</th>
+<th>Example Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package Installation Commands</td>
+<td>These should be run in the console, not in your R Markdown document. They only need to be run once to install packages.</td>
+<td><del><code>install.packages("tidyverse")</code></del></td>
+</tr>
+<tr class="even">
+<td>View() Function Calls</td>
+<td>The <code>View()</code> function opens interactive windows that don’t work in knitted or rendered documents and can cause errors.</td>
+<td><del><code>View(mydata)</code></del> <br> <del><code>mydata |&gt; View()</code></del></td>
+</tr>
+<tr class="odd">
+<td>Raw Data Inspection</td>
+<td>These commands are for interactive data exploration and don’t provide meaningful output in final documents.</td>
+<td><del><code>mydata</code></del> <br> <del><code>head(mydata)</code></del> <br> <del><code>tail(mydata)</code></del> <br> <del><code>str(mydata)</code></del> <br> <del><code>glimpse(mydata)</code></del></td>
+</tr>
+</tbody>
+</table>
+<p>Key Points:</p>
+<ul>
+<li>Package installation should be done separately in the R console</li>
+<li>Interactive viewing functions (<code>View()</code>) don’t work in knitted or rendered documents</li>
+<li>Raw data inspection commands should be replaced with meaningful analysis or visualizations</li>
+</ul>
+<p>Best Practice: Remove or comment out these lines before rendering your final R Markdown document to ensure clean, error-free output.</p>
+<ol start="2" type="1">
+<li><strong>File Naming Convention:</strong>
+<ul>
+<li>Name your project exactly as follows, using all lowercase, underscores, and leading zero for project number:
+<ul>
+<li><code>project_##_firstname_lastname.qmd</code></li>
+<li>Example: <code>project_01_ilyas_ustun.qmd</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Rendering:</strong>
+<ul>
+<li>Compile your Quarto document into an HTML report by clicking the <code>Render</code> button in RStudio. This will produce a <code>project_##_firstname_lastname.html</code> file in the same directory.</li>
+</ul></li>
+<li><strong>Submission:</strong>
+<ul>
+<li>Submit both the <code>.qmd</code> and <code>.html</code> files to the designated submission folder.</li>
+</ul></li>
+</ol>
+<hr>
+<blockquote class="blockquote">
+<p><strong>File Management Tip:</strong> If you are going to read in a data file, store all data files (e.g., <code>.csv</code>, <code>.xlsx</code>, <code>.xls</code>, <code>.txt</code>) in the same folder as your script for convenience. Otherwise, specify the full file path for your data.</p>
+</blockquote>
+<hr>
+<blockquote class="blockquote">
+<p>If you encounter errors when rendering your document to HTML, carefully review and correct your code. The entire document must run without errors for successful rendering.</p>
+</blockquote>
+<hr>
+</section>
+<section id="evaluation-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-criteria">Evaluation Criteria</h3>
+<ul>
+<li><strong>Accuracy and Completeness:</strong> Each question is worth equal points. The project is graded out of <strong>100 points</strong>.</li>
+<li><strong>Code Output</strong>: Your Quarto .qmd file should be fully executed, with all outputs visible under the relevant code chunks.</li>
+<li><strong>Code Quality:</strong> Code should be correct, well-structured, and commented appropriately.</li>
+<li><strong>Visualizations:</strong> Data visualizations must be accurate, relevant, and effectively labeled.</li>
+<li><strong>Adherence to Guidelines:</strong> File naming, formatting, and submission instructions must be followed.</li>
+</ul>
+<hr>
+</section>
+<section id="troubleshooting-and-support" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-and-support">Troubleshooting and Support</h3>
+<p>If you require assistance or experience technical issues while working on the project, please follow these steps to get the help you need:</p>
+<ul>
+<li>Check Online Resources: First, try to find the answer to your question or solution to your problem by checking online resources such as:
+<ul>
+<li>Stack Overflow (for R programming-related issues)</li>
+<li>RStudio Community (for RStudio and R-related discussions)</li>
+<li>R-bloggers (for R tutorials, tips, and best practices)</li>
+</ul></li>
+<li>Discussion Forum: If you can’t find the information you’re looking for, post your question on the course discussion forum. Your peers or instructors may have encountered a similar issue and can provide insights or guidance on R or data science concepts.</li>
+<li>Provide Context: When posting your question, please include relevant details such as:
+<ul>
+<li>A clear description of the problem or question</li>
+<li>The code you are working with (if applicable)</li>
+<li>Any error messages you are encountering</li>
+<li>The name of the dataset or context related to your question</li>
+</ul></li>
+<li>Contact the professor: If you’re unable to resolve your issue through the above steps, or if your question is of a personal or sensitive nature, please don’t hesitate to contact Dr.&nbsp;Ilyas Ustun directly.</li>
+</ul>
+<p>By following these steps, you’ll not only potentially get a quicker resolution to your issue, but you’ll also contribute to building a resourceful and supportive community within the course.</p>
+<hr>
+</section>
+<section id="submission-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="submission-checklist">Submission Checklist</h3>
+<p>Before submitting your assignment, please confirm each item:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">My <code>.qmd</code> file is named correctly (<code>project_##_firstname_lastname.qmd</code>) and runs without errors.</label></li>
+<li><label><input type="checkbox" checked="">All code chunks have been executed, and outputs are visible under each question.</label></li>
+<li><label><input type="checkbox" checked="">There is no active <code>install.packages()</code> or <code>View()</code> code (these are commented out or removed).</label></li>
+<li><label><input type="checkbox" checked="">The final HTML report is rendered and saved in the same directory as the <code>.qmd</code> file.</label></li>
+<li><label><input type="checkbox" checked="">Both <code>.qmd</code> and <code>.html</code> files are uploaded to the designated submission folder.</label></li>
+<li><label><input type="checkbox" checked="">All data visualizations are appropriate, clear, and effectively labeled.</label></li>
+<li><label><input type="checkbox" checked="">My name and the date are included in the Honor Pledge section.</label></li>
+<li><label><input type="checkbox" checked="">I have not shared or received code or solutions from others.</label></li>
+</ul>
+<hr>
+</section>
+<section id="honor-pledge" class="level3">
+<h3 class="anchored" data-anchor-id="honor-pledge">Honor Pledge</h3>
+<p><strong>Honor Pledge:</strong><br>
+I affirm that all work on this assignment is my own and that I have not shared or received unauthorized assistance.</p>
+<ul>
+<li>Name: Kira Damo</li>
+<li>Date: July 16, 2025</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="project-overview-and-data-description" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview-and-data-description">Project Overview and Data Description</h2>
+<hr>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>This assignment focuses on data manipulation in R, with an emphasis on joining multiple datasets. You will use functions from the <code>dplyr</code> package to perform these operations.</p>
+<p>The data for this project comes from the <code>nycflights13</code> package. This dataset is relational, meaning the information is organized across several interconnected tables: <code>flights</code>, <code>airlines</code>, <code>airports</code>, and <code>planes</code>.</p>
+<p>The objective is to combine these tables using various join functions. This will allow you to answer questions that require information from multiple tables, such as determining an airline’s most frequent destination or linking flight delays to specific aircraft manufacturers.</p>
+</section>
+<section id="what-youll-learn" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h3>
+<p>By completing this assignment, students will learn to:</p>
+<ul>
+<li><strong>Master <code>dplyr</code> join functions:</strong> Gain practical experience with the full suite of joins (<code>left</code>, <code>inner</code>, <code>right</code>, <code>anti</code>, <code>semi</code>, <code>full</code>) to correctly combine and filter datasets.</li>
+<li><strong>Build complex data-wrangling pipelines:</strong> Chain joins with other essential <code>dplyr</code> verbs (<code>group_by</code>, <code>summarise</code>, <code>filter</code>, <code>count</code>) to answer multi-step analytical questions.</li>
+<li><strong>Solve common data inconsistencies:</strong> Practice handling real-world challenges like joining on mismatched key names, managing <code>NA</code> values, and identifying unmatched records between tables.</li>
+</ul>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>For this assignment, we will use the <strong><code>nycflights13</code></strong> package in R. This package provides a relational dataset, meaning it contains several interconnected tables that can be joined together. The data contains information about all 336,776 flights that departed from New York City’s three main airports (JFK, LGA, and EWR) in the year 2013.</p>
+<p>The primary tables we will be working with are: * <code>flights</code>: The central table, containing a record for every individual flight. * <code>airlines</code>: A lookup table that connects carrier codes to full airline names. * <code>airports</code>: A lookup table containing metadata about airports, such as name and location. * <code>planes</code>: A lookup table containing metadata about each individual airplane.</p>
+</section>
+<section id="explanation-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-variables">Explanation of Variables</h3>
+<p>Below are the most important variables from each table that you will need for this assignment.</p>
+<section id="flights-table" class="level4">
+<h4 class="anchored" data-anchor-id="flights-table"><code>flights</code> Table</h4>
+<p>This is the main transactional table. The key variables here often act as “foreign keys” that link to the other tables.</p>
+<ul>
+<li><code>year</code>, <code>month</code>, <code>day</code>: The date of the flight.</li>
+<li><code>dep_delay</code>, <code>arr_delay</code>: The departure and arrival delay in minutes. Negative values indicate an early departure/arrival.</li>
+<li><code>carrier</code>: A two-letter abbreviation for the airline (e.g., “UA”, “AA”). This is the key that joins to the <code>airlines</code> table.</li>
+<li><code>tailnum</code>: The unique identification number for the airplane. This is the key that joins to the <code>planes</code> table.</li>
+<li><code>origin</code>, <code>dest</code>: The origin and destination airport codes (e.g., “JFK”, “LAX”). These are the keys that join to the <code>airports</code> table.</li>
+</ul>
+</section>
+<section id="airlines-table" class="level4">
+<h4 class="anchored" data-anchor-id="airlines-table"><code>airlines</code> Table</h4>
+<p>This is a simple lookup table for airline names.</p>
+<ul>
+<li><code>carrier</code>: The two-letter airline code. This is the “primary key” that matches the <code>carrier</code> column in <code>flights</code>.</li>
+<li><code>name</code>: The full name of the airline (e.g., “United Air Lines Inc.”).</li>
+</ul>
+</section>
+<section id="airports-table" class="level4">
+<h4 class="anchored" data-anchor-id="airports-table"><code>airports</code> Table</h4>
+<p>This table contains information about each airport.</p>
+<ul>
+<li><code>faa</code>: The unique FAA airport code. This is the “primary key” that matches the <code>origin</code> and <code>dest</code> columns in <code>flights</code>.</li>
+<li><code>name</code>: The full name of the airport (e.g., “John F Kennedy Intl”).</li>
+<li><code>alt</code>: The altitude of the airport, in feet.</li>
+<li><code>tzone</code>: The timezone of the airport (e.g., “America/New_York”).</li>
+</ul>
+</section>
+<section id="planes-table" class="level4">
+<h4 class="anchored" data-anchor-id="planes-table"><code>planes</code> Table</h4>
+<p>This table contains information about each plane.</p>
+<ul>
+<li><code>tailnum</code>: The unique tail number of the aircraft. This is the “primary key” that matches the <code>tailnum</code> column in <code>flights</code>.</li>
+<li><code>year</code>: The year the plane was manufactured.</li>
+<li><code>manufacturer</code>: The company that built the plane (e.g., “BOEING”, “AIRBUS”).</li>
+</ul>
+<p><strong>To get more information about the datasets and a full list of all variables</strong>, you can use the built-in R help function. Simply type a question mark followed by the dataset name in your R console:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>?flights</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?airports</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>?airlines</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>?planes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Setup:</strong></p>
+<p>First, you need to install and load the necessary packages. Run the following code in your R console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("tidyverse", "nycflights13")) # Run this line if you haven't installed them yet</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># To get a feel for the data, you can inspect the tables</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(flights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 336,776
+Columns: 19
+$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…
+$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …
+$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …
+$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…
+$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…
+$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…
+$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…
+$ carrier        &lt;chr&gt; "UA", "UA", "AA", "B6", "DL", "UA", "B6", "EV", "B6", "…
+$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…
+$ tailnum        &lt;chr&gt; "N14228", "N24211", "N619AA", "N804JB", "N668DN", "N394…
+$ origin         &lt;chr&gt; "EWR", "LGA", "JFK", "JFK", "LGA", "EWR", "EWR", "LGA",…
+$ dest           &lt;chr&gt; "IAH", "IAH", "MIA", "BQN", "ATL", "ORD", "FLL", "IAD",…
+$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…
+$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …
+$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…
+$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…
+$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(airlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 16
+Columns: 2
+$ carrier &lt;chr&gt; "9E", "AA", "AS", "B6", "DL", "EV", "F9", "FL", "HA", "MQ", "O…
+$ name    &lt;chr&gt; "Endeavor Air Inc.", "American Airlines Inc.", "Alaska Airline…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(airports)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,458
+Columns: 8
+$ faa   &lt;chr&gt; "04G", "06A", "06C", "06N", "09J", "0A9", "0G6", "0G7", "0P2", "…
+$ name  &lt;chr&gt; "Lansdowne Airport", "Moton Field Municipal Airport", "Schaumbur…
+$ lat   &lt;dbl&gt; 41.13047, 32.46057, 41.98934, 41.43191, 31.07447, 36.37122, 41.4…
+$ lon   &lt;dbl&gt; -80.61958, -85.68003, -88.10124, -74.39156, -81.42778, -82.17342…
+$ alt   &lt;dbl&gt; 1044, 264, 801, 523, 11, 1593, 730, 492, 1000, 108, 409, 875, 10…
+$ tz    &lt;dbl&gt; -5, -6, -6, -5, -5, -5, -5, -5, -5, -8, -5, -6, -5, -5, -5, -5, …
+$ dst   &lt;chr&gt; "A", "A", "A", "A", "A", "A", "A", "A", "U", "A", "A", "U", "A",…
+$ tzone &lt;chr&gt; "America/New_York", "America/Chicago", "America/Chicago", "Ameri…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(planes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3,322
+Columns: 9
+$ tailnum      &lt;chr&gt; "N10156", "N102UW", "N103US", "N104UW", "N10575", "N105UW…
+$ year         &lt;int&gt; 2004, 1998, 1999, 1999, 2002, 1999, 1999, 1999, 1999, 199…
+$ type         &lt;chr&gt; "Fixed wing multi engine", "Fixed wing multi engine", "Fi…
+$ manufacturer &lt;chr&gt; "EMBRAER", "AIRBUS INDUSTRIE", "AIRBUS INDUSTRIE", "AIRBU…
+$ model        &lt;chr&gt; "EMB-145XR", "A320-214", "A320-214", "A320-214", "EMB-145…
+$ engines      &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ seats        &lt;int&gt; 55, 182, 182, 182, 55, 182, 182, 182, 182, 182, 55, 55, 5…
+$ speed        &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ engine       &lt;chr&gt; "Turbo-fan", "Turbo-fan", "Turbo-fan", "Turbo-fan", "Turb…</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<hr>
+<section id="question-1-left_join" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-left_join">Question 1: <code>left_join</code></h3>
+<p>The <code>flights</code> table uses a two-letter <code>carrier</code> code. Create a new data frame called <code>flights_with_names</code> that includes all the columns from <code>flights</code> plus a new column with the full name of the airline. How many flights were operated by “United Air Lines Inc.”?</p>
+<p><strong>Hint:</strong></p>
+<p>You need to combine <code>flights</code> and <code>airlines</code>. Which join function adds columns from the second table to the first, keeping all records from the first? The tables share a common column named <code>carrier</code>. After joining, you can use <code>filter()</code> and <code>count()</code> to get the final number.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights_with_names <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(carrier)`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>flights_with_names <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"United Air Lines Inc."</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1 58665</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#left joined flights with airlines. filtered name with United air lines and counted rows.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#58665 flights were operated by United Air Lines Inc.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-2-inner_join-and-dplyr" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-inner_join-and-dplyr"><strong>Question 2: <code>inner_join</code> and <code>dplyr</code></strong></h3>
+<p>Find the top 5 destination airports with the highest number of incoming flights. Your final result should be a table with the FAA airport code (<code>faa</code>), the full airport name (<code>name</code>), and the count of flights (<code>flight_count</code>).</p>
+<p><strong>Hint:</strong></p>
+<p>Start by counting the occurrences of each destination (<code>dest</code>) in the <code>flights</code> table using <code>count()</code>. Then, join this summary with the <code>airports</code> table to get the airport names. The join key in <code>airports</code> is <code>faa</code>. An <code>inner_join</code> is appropriate here because you only want destinations that exist in both tables.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(dest) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inner_join</span>(airports, <span class="fu">join_by</span>(dest <span class="sc">==</span> faa)) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n=</span><span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>alt, <span class="sc">-</span>lat, <span class="sc">-</span>lon, <span class="sc">-</span>tz, <span class="sc">-</span>dst, <span class="sc">-</span>tzone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+# Groups:   dest [5]
+  dest      n name                              
+  &lt;chr&gt; &lt;int&gt; &lt;chr&gt;                             
+1 ORD   17283 Chicago Ohare Intl                
+2 ATL   17215 Hartsfield Jackson Atlanta Intl   
+3 LAX   16174 Los Angeles Intl                  
+4 BOS   15508 General Edward Lawrence Logan Intl
+5 MCO   14082 Orlando Intl                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#grouped by destination and counted rows. innerjoined by dest == faa. arranged in descending order and returned top 5 values. removed columns that were irrelevant to question.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ORD    17283   Chicago Ohare Intl      </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ATL    17215   Hartsfield Jackson Atlanta Intl     </span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#LAX    16174   Los Angeles Intl        </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#BOS    15508   General Edward Lawrence Logan Intl      </span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#MCO    14082   Orlando Intl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-3-anti_join" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-anti_join"><strong>Question 3: <code>anti_join</code></strong></h3>
+<p>An <code>anti_join</code> returns all rows from the first table that <em>do not</em> have a matching row in the second table. Find all the planes (<code>tailnum</code>) from the <code>planes</code> table that are not present in the <code>flights</code> table (i.e., planes that exist in our records but didn’t fly in 2013 from NYC). How many such planes are there?</p>
+<p><strong>Hint:</strong></p>
+<p>The goal is to find entries in <code>planes</code> that <em>don’t</em> have a match in <code>flights</code>. The <code>anti_join</code> function is specifically designed for this “anti-match” filtering. The common column is <code>tailnum</code>.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anti_join</span>(planes, <span class="fu">join_by</span>(tailnum)) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(tailnum) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1   722</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#anti-joined flights with planes by tailnum. Found the distinct tailnum and counted number of rows.</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#There are 722 planes that are not in the flights table.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-4-left_join-and-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-left_join-and-ggplot2"><strong>Question 4: <code>left_join</code> and <code>ggplot2</code></strong></h3>
+<p>What is the average arrival delay (<code>arr_delay</code>) for each plane manufacturer? Create a bar chart that shows the average delay per manufacturer, ordered from lowest to highest delay.</p>
+<p><strong>Hint:</strong></p>
+<p>First, join <code>flights</code> with <code>planes</code> to get the <code>manufacturer</code> for each flight. Then, <code>group_by()</code> manufacturer and <code>summarise()</code> to calculate the <code>mean()</code> arrival delay. Don’t forget to use <code>na.rm = TRUE</code> inside <code>mean()</code>. For the plot, use <code>ggplot()</code> and <code>geom_col()</code>, and consider using <code>reorder()</code> to sort the bars within the <code>aes()</code> mapping.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(planes, <span class="fu">join_by</span>(tailnum)) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(manufacturer) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_delay_time =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(avg_delay_time <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(manufacturer, avg_delay_time), <span class="at">y =</span> avg_delay_time)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Manufacturer"</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Average Departure Time (minutes)"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Average Delay Times by Manufacturer"</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_5_Kira_Damo_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Joined by tailnum and grouped by manufacturer. Found the mean arrival delay and filtered delay to be greater than 0. plotted bar chart and ordered in increasing order.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-5-right_join" class="level3">
+<h3 class="anchored" data-anchor-id="question-5-right_join"><strong>Question 5: <code>right_join</code></strong></h3>
+<p>A <code>right_join</code> keeps all rows from the right-hand table. Use a <code>right_join</code> to show the number of flights for every airline in the <code>airlines</code> table. Are there any airlines listed in <code>airlines</code> that had zero flights in 2013 from NYC?</p>
+<p><strong>Hint:</strong> You need to keep all airlines from the <code>airlines</code> table, even if they didn’t have any flights. This is the primary use case for a <code>right_join</code> where <code>airlines</code> is the right-hand table. Start by counting flights per carrier from <code>flights</code>, then join <code>airlines</code> to it. Look for <code>NA</code> in the count column.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">right_join</span>(airlines, <span class="fu">join_by</span>(carrier))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 3
+# Groups:   carrier [16]
+   carrier     n name                       
+   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;                      
+ 1 9E      18460 Endeavor Air Inc.          
+ 2 AA      32729 American Airlines Inc.     
+ 3 AS        714 Alaska Airlines Inc.       
+ 4 B6      54635 JetBlue Airways            
+ 5 DL      48110 Delta Air Lines Inc.       
+ 6 EV      54173 ExpressJet Airlines Inc.   
+ 7 F9        685 Frontier Airlines Inc.     
+ 8 FL       3260 AirTran Airways Corporation
+ 9 HA        342 Hawaiian Airlines Inc.     
+10 MQ      26397 Envoy Air                  
+11 OO         32 SkyWest Airlines Inc.      
+12 UA      58665 United Air Lines Inc.      
+13 US      20536 US Airways Inc.            
+14 VX       5162 Virgin America             
+15 WN      12275 Southwest Airlines Co.     
+16 YV        601 Mesa Airlines Inc.         </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped by carrier and counted each row for each carrier. Right joined with airlines by carrier.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#There are no airlines that had zero flights in 2013 from NYC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-6-semi_join" class="level3">
+<h3 class="anchored" data-anchor-id="question-6-semi_join"><strong>Question 6: <code>semi_join</code></strong></h3>
+<p>A <code>semi_join</code> filters the left-hand table to keep only the rows that have a match in the right-hand table. Use a <code>semi_join</code> to find all flights in <code>flights</code> that flew to an airport located in California. We’ll use the timezone (<code>tzone</code> = “America/Los_Angeles”) as a proxy. How many flights match this criterion?</p>
+<p><strong>Hint:</strong></p>
+<p>A <code>semi_join</code> is a filtering join. First, create a new data frame of only the target airports by <code>filter()</code>ing the <code>airports</code> table. Then, use this new data frame to filter the <code>flights</code> table using <code>semi_join</code>.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ca_flights <span class="ot">=</span> airports <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(tzone <span class="sc">==</span> <span class="st">"America/Los_Angeles"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">right_join</span>(ca_flights, <span class="fu">join_by</span>(dest <span class="sc">==</span> faa)) <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1 46487</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Created filtered tzone for California and right joined by dest == faa.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#There were 46487 flights that flew to an airport in California.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-7-multiple-joins" class="level3">
+<h3 class="anchored" data-anchor-id="question-7-multiple-joins"><strong>Question 7: Multiple Joins</strong></h3>
+<p>Find the top 3 airlines with the highest average departure delay (<code>dep_delay</code>) for flights originating from ‘JFK’. Your result should show the airline’s full name and its average delay.</p>
+<p><strong>Hint:</strong></p>
+<p>This is a multi-step problem. Start with <code>flights</code>. <code>filter()</code> for ‘JFK’ flights. Then, <code>group_by()</code> carrier and <code>summarise()</code> to get the average delay. Finally, <code>left_join()</code> with <code>airlines</code> to get the full names. Don’t forget to <code>arrange()</code> the final result.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(origin <span class="sc">==</span> <span class="st">"JFK"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_delay_time =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airlines, <span class="fu">join_by</span>(carrier)) <span class="sc">|&gt;</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_delay_time)) <span class="sc">|&gt;</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  carrier avg_delay_time name                    
+  &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;                   
+1 9E                19.0 Endeavor Air Inc.       
+2 EV                18.5 ExpressJet Airlines Inc.
+3 VX                13.3 Virgin America          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered for origin as jfk. found mean departure delay according to carrier. left joined airlines by carrier. arranged in descending order and returned top 3 values.</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#The airlines with the hightest average delay time are Endeavor Air Inc, ExpressJet Airlines Inc, and Virgin America</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-8-left_join-with-different-key-names-and-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="question-8-left_join-with-different-key-names-and-ggplot2"><strong>Question 8: <code>left_join</code> with different key names and <code>ggplot2</code></strong></h3>
+<p>We want to see if there’s a relationship between the altitude of the origin airport and its average departure delay. Create a scatter plot with airport altitude on the x-axis and average departure delay on the y-axis.</p>
+<p><strong>Hint:</strong></p>
+<p>This requires two steps before plotting. First, create a summary table from <code>flights</code> by grouping by <code>origin</code> and calculating the average delay. Second, <code>left_join()</code> this summary table with the <code>airports</code> table to add the altitude (<code>alt</code>). The join keys will be <code>origin</code> and <code>faa</code>.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(origin) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airports, <span class="fu">join_by</span>(origin <span class="sc">==</span> faa)) <span class="sc">|&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alt, <span class="at">y =</span> avg_delay)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_5_Kira_Damo_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Found the mean departure delay and removed NA values. Used left join to join origin == faa. Plotted scatter plot with altitude and average delay. There is not enough data to determine a relationship between the two. Based on these three points though there is not a relationship.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-9-full_join" class="level3">
+<h3 class="anchored" data-anchor-id="question-9-full_join"><strong>Question 9: <code>full_join</code></strong></h3>
+<p>A <code>full_join</code> keeps all observations from both tables. Let’s find mismatches. Create a subset of <code>flights</code> containing only flights from January 1st with carrier “AA”. Create a subset of <code>planes</code> containing only planes manufactured by “BOEING”. Perform a <code>full_join</code> on these two subsets using <code>tailnum</code>. How many resulting rows have flight information but no plane manufacturer information (i.e., <code>manufacturer</code> is <code>NA</code>)?</p>
+<p><strong>Hint:</strong></p>
+<p>Create the two smaller data frames as described using <code>filter()</code>. Then, use <code>full_join()</code> to combine them. A <code>full_join</code> will create <code>NA</code>s where there is no match on either side. <code>filter()</code> the resulting table for rows where flight information exists (e.g., <code>!is.na(flight)</code>) but plane information does not (<code>is.na(manufacturer)</code>).</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>AA_flights <span class="ot">=</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> carrier <span class="sc">==</span> <span class="st">"AA"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>boeing <span class="ot">=</span> planes <span class="sc">|&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">"BOEING"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>AA_flights <span class="sc">|&gt;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">full_join</span>(boeing, <span class="fu">join_by</span>(tailnum)) <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">is.na</span>(manufacturer)) <span class="sc">|&gt;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1    79</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered for january first and AA carrier from flights. filtereted boeing manufacturer from planes. full joined data by tailnum. counted rows.</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#79 flights have no plane manufacturer from January 1st that are not Boeing.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-10-putting-it-all-together" class="level3">
+<h3 class="anchored" data-anchor-id="question-10-putting-it-all-together"><strong>Question 10: Putting it all together</strong></h3>
+<p>For each airline, find its most frequent destination airport. Your final output should be a table showing the airline’s full name (<code>name</code>), the destination airport’s full name (<code>dest_name</code>), and the number of flights (<code>n</code>).</p>
+<p><strong>Hint:</strong></p>
+<p>This is a complex problem. You’ll need to join three tables: <code>flights</code>, <code>airlines</code>, and <code>airports</code>. Beware of conflicting column names (<code>name</code> exists in both <code>airlines</code> and <code>airports</code>). It’s a good idea to rename one of them before joining. After joining, <code>count()</code> the airline names and destination names together. Then, <code>group_by()</code> only the airline name and use <code>slice_max(order_by = n, n = 1)</code> to find the row with the highest count for each airline.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>flights2 <span class="ot">=</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airlines, <span class="fu">join_by</span>(carrier))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>flights3 <span class="ot">=</span> flights2 <span class="sc">|&gt;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airports, <span class="fu">join_by</span>(dest <span class="sc">==</span> faa))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>flights3 <span class="sc">|&gt;</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(name.x, dest, name.y) <span class="sc">|&gt;</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(name.x) <span class="sc">|&gt;</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_max</span>(<span class="at">order_by =</span> n, <span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 4
+# Groups:   name.x [16]
+   name.x                      dest  name.y                                n
+   &lt;chr&gt;                       &lt;chr&gt; &lt;chr&gt;                             &lt;int&gt;
+ 1 AirTran Airways Corporation ATL   Hartsfield Jackson Atlanta Intl    2337
+ 2 Alaska Airlines Inc.        SEA   Seattle Tacoma Intl                 714
+ 3 American Airlines Inc.      DFW   Dallas Fort Worth Intl             7257
+ 4 Delta Air Lines Inc.        ATL   Hartsfield Jackson Atlanta Intl   10571
+ 5 Endeavor Air Inc.           CVG   Cincinnati Northern Kentucky Intl  1559
+ 6 Envoy Air                   RDU   Raleigh Durham Intl                4794
+ 7 ExpressJet Airlines Inc.    IAD   Washington Dulles Intl             4048
+ 8 Frontier Airlines Inc.      DEN   Denver Intl                         685
+ 9 Hawaiian Airlines Inc.      HNL   Honolulu Intl                       342
+10 JetBlue Airways             FLL   Fort Lauderdale Hollywood Intl     6563
+11 Mesa Airlines Inc.          IAD   Washington Dulles Intl              311
+12 SkyWest Airlines Inc.       CLE   Cleveland Hopkins Intl               24
+13 Southwest Airlines Co.      MDW   Chicago Midway Intl                4113
+14 US Airways Inc.             CLT   Charlotte Douglas Intl             8632
+15 United Air Lines Inc.       ORD   Chicago Ohare Intl                 6984
+16 Virgin America              LAX   Los Angeles Intl                   2580</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#used left join to join airlines and flights, then left join again to add airports to the combined flights and airlines table. counted name, destination, and airport combinations, used provided slice max and found the most frequent destinations.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

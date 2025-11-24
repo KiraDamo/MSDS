@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kira Damo">
+
+<title>Project 4: Visualizing Olympic Athletes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Project_4_Kira_Damo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Project_4_Kira_Damo_files/libs/quarto-html/quarto.js"></script>
+<script src="Project_4_Kira_Damo_files/libs/quarto-html/popper.min.js"></script>
+<script src="Project_4_Kira_Damo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Project_4_Kira_Damo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Project_4_Kira_Damo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Project_4_Kira_Damo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Project_4_Kira_Damo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Project_4_Kira_Damo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Project_4_Kira_Damo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 4: Visualizing Olympic Athletes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kira Damo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<section id="project-guidelines-and-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="project-guidelines-and-requirements">Project Guidelines and Requirements</h2>
+<hr>
+<section id="guidelines" class="level3">
+<h3 class="anchored" data-anchor-id="guidelines">Guidelines</h3>
+<ul>
+<li><strong>Do not share assignment questions or solutions with anyone.</strong> This includes printing, distributing, or posting them on any online platform or social media.</li>
+<li><strong>Peer discussion is permitted for general concepts or troubleshooting, but NOT for sharing code or specific solutions.</strong></li>
+<li>Complete your coding tasks within the R code chunks provided under each question.</li>
+<li>Write clear, well-commented code. Use <code>#</code> to add explanations within code chunks as needed.</li>
+<li>Use the markdown sections to provide written explanations, interpretations, and conclusions.</li>
+<li>Complete the assignment independently. Reference materials such as textbooks, R documentation, and reputable online resources may be used for support.</li>
+<li>Ensure your name is included in the Honor Pledge section.</li>
+</ul>
+<hr>
+</section>
+<section id="required-software-and-packages" class="level3">
+<h3 class="anchored" data-anchor-id="required-software-and-packages">Required Software and Packages</h3>
+<ul>
+<li>R version 4.4.2 or higher is recommended.</li>
+<li>RStudio version 2025.05.1 Build 513 or higher is recommended.</li>
+<li>Make sure that the packages used in the project are installed and loaded in your R environment.</li>
+</ul>
+<hr>
+</section>
+<section id="deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="deliverables">Deliverables</h3>
+<ol type="1">
+<li><strong>Prepare Your Quarto Document:</strong>
+<ul>
+<li><p>Your Quarto <code>.qmd</code> file should be fully executed, with all outputs visible under the relevant code chunks.</p></li>
+<li><p><strong>Do not include any active code for installing packages (such as <code>install.packages()</code>) or using the <code>View()</code> function or functions for checking raw data in your final document.</strong></p>
+<p>When preparing your document for rendering (knitting), certain types of code should be removed or commented out to ensure smooth execution. The table shows three categories of problematic code: package installation commands (which belong in the console), View() functions (which create interactive windows that break during knitting), and basic data inspection commands (which should be replaced with meaningful analysis). Following these guidelines helps create clean, professional R Markdown documents that render without errors.</p></li>
+</ul></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 30%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What to Remove</th>
+<th>Why Remove It</th>
+<th>Example Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package Installation Commands</td>
+<td>These should be run in the console, not in your R Markdown document. They only need to be run once to install packages.</td>
+<td><del><code>install.packages("tidyverse")</code></del></td>
+</tr>
+<tr class="even">
+<td>View() Function Calls</td>
+<td>The <code>View()</code> function opens interactive windows that don’t work in knitted or rendered documents and can cause errors.</td>
+<td><del><code>View(mydata)</code></del> <br> <del><code>mydata |&gt; View()</code></del></td>
+</tr>
+<tr class="odd">
+<td>Raw Data Inspection</td>
+<td>These commands are for interactive data exploration and don’t provide meaningful output in final documents.</td>
+<td><del><code>mydata</code></del> <br> <del><code>head(mydata)</code></del> <br> <del><code>tail(mydata)</code></del> <br> <del><code>str(mydata)</code></del> <br> <del><code>glimpse(mydata)</code></del></td>
+</tr>
+</tbody>
+</table>
+<p>Key Points:</p>
+<ul>
+<li>Package installation should be done separately in the R console</li>
+<li>Interactive viewing functions (<code>View()</code>) don’t work in knitted or rendered documents</li>
+<li>Raw data inspection commands should be replaced with meaningful analysis or visualizations</li>
+</ul>
+<p>Best Practice: Remove or comment out these lines before rendering your final R Markdown document to ensure clean, error-free output.</p>
+<ol start="2" type="1">
+<li><strong>File Naming Convention:</strong>
+<ul>
+<li>Name your project exactly as follows, using all lowercase, underscores, and leading zero for project number:
+<ul>
+<li><code>project_##_firstname_lastname.qmd</code></li>
+<li>Example: <code>project_01_ilyas_ustun.qmd</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Rendering:</strong>
+<ul>
+<li>Compile your Quarto document into an HTML report by clicking the <code>Render</code> button in RStudio. This will produce a <code>project_##_firstname_lastname.html</code> file in the same directory.</li>
+</ul></li>
+<li><strong>Submission:</strong>
+<ul>
+<li>Submit both the <code>.qmd</code> and <code>.html</code> files to the designated submission folder.</li>
+</ul></li>
+</ol>
+<hr>
+<blockquote class="blockquote">
+<p><strong>File Management Tip:</strong> If you are going to read in a data file, store all data files (e.g., <code>.csv</code>, <code>.xlsx</code>, <code>.xls</code>, <code>.txt</code>) in the same folder as your script for convenience. Otherwise, specify the full file path for your data.</p>
+</blockquote>
+<hr>
+<blockquote class="blockquote">
+<p>If you encounter errors when rendering your document to HTML, carefully review and correct your code. The entire document must run without errors for successful rendering.</p>
+</blockquote>
+<hr>
+</section>
+<section id="evaluation-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-criteria">Evaluation Criteria</h3>
+<ul>
+<li><strong>Accuracy and Completeness:</strong> Each question is worth equal points. The project is graded out of <strong>100 points</strong>.</li>
+<li><strong>Code Output</strong>: Your Quarto .qmd file should be fully executed, with all outputs visible under the relevant code chunks.</li>
+<li><strong>Code Quality:</strong> Code should be correct, well-structured, and commented appropriately.</li>
+<li><strong>Visualizations:</strong> Data visualizations must be accurate, relevant, and effectively labeled.</li>
+<li><strong>Adherence to Guidelines:</strong> File naming, formatting, and submission instructions must be followed.</li>
+</ul>
+<hr>
+</section>
+<section id="troubleshooting-and-support" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-and-support">Troubleshooting and Support</h3>
+<p>If you require assistance or experience technical issues while working on the project, please follow these steps to get the help you need:</p>
+<ul>
+<li>Check Online Resources: First, try to find the answer to your question or solution to your problem by checking online resources such as:
+<ul>
+<li>Stack Overflow (for R programming-related issues)</li>
+<li>RStudio Community (for RStudio and R-related discussions)</li>
+<li>R-bloggers (for R tutorials, tips, and best practices)</li>
+</ul></li>
+<li>Discussion Forum: If you can’t find the information you’re looking for, post your question on the course discussion forum. Your peers or instructors may have encountered a similar issue and can provide insights or guidance on R or data science concepts.</li>
+<li>Provide Context: When posting your question, please include relevant details such as:
+<ul>
+<li>A clear description of the problem or question</li>
+<li>The code you are working with (if applicable)</li>
+<li>Any error messages you are encountering</li>
+<li>The name of the dataset or context related to your question</li>
+</ul></li>
+<li>Contact the professor: If you’re unable to resolve your issue through the above steps, or if your question is of a personal or sensitive nature, please don’t hesitate to contact Dr.&nbsp;Ilyas Ustun directly.</li>
+</ul>
+<p>By following these steps, you’ll not only potentially get a quicker resolution to your issue, but you’ll also contribute to building a resourceful and supportive community within the course.</p>
+<hr>
+</section>
+<section id="submission-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="submission-checklist">Submission Checklist</h3>
+<p>Before submitting your assignment, please confirm each item:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">My <code>.qmd</code> file is named correctly (<code>project_##_firstname_lastname.qmd</code>) and runs without errors.</label></li>
+<li><label><input type="checkbox" checked="">All code chunks have been executed, and outputs are visible under each question.</label></li>
+<li><label><input type="checkbox" checked="">There is no active <code>install.packages()</code> or <code>View()</code> code (these are commented out or removed).</label></li>
+<li><label><input type="checkbox" checked="">The final HTML report is rendered and saved in the same directory as the <code>.qmd</code> file.</label></li>
+<li><label><input type="checkbox" checked="">Both <code>.qmd</code> and <code>.html</code> files are uploaded to the designated submission folder.</label></li>
+<li><label><input type="checkbox" checked="">All data visualizations are appropriate, clear, and effectively labeled.</label></li>
+<li><label><input type="checkbox" checked="">My name and the date are included in the Honor Pledge section.</label></li>
+<li><label><input type="checkbox" checked="">I have not shared or received code or solutions from others.</label></li>
+</ul>
+<hr>
+</section>
+<section id="honor-pledge" class="level3">
+<h3 class="anchored" data-anchor-id="honor-pledge">Honor Pledge</h3>
+<p><strong>Honor Pledge:</strong><br>
+I affirm that all work on this assignment is my own and that I have not shared or received unauthorized assistance.</p>
+<ul>
+<li>Name: Kira Damo</li>
+<li>Date: July 12th, 2025</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="project-overview-and-data-description" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview-and-data-description">Project Overview and Data Description</h2>
+<hr>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<ul>
+<li>This project assignment focuses on data visualization using <strong>ggplot2</strong> and employs <strong>dplyr</strong> for data manipulation.</li>
+<li>You have been provided with a CSV file containing Olympic athletes’ information, including columns such as:
+<ul>
+<li>Name, Sex, Age, Height, Weight, Team, NOC, Games, Year, Season, City, Sport, Event, Medal</li>
+</ul></li>
+<li>Please use only <strong>ggplot2</strong> for creating the plots in these questions. You may use <strong>dplyr</strong> to preprocess or transform the data if needed.</li>
+<li>The dataset is available in the file <code>athlete_events.csv</code>.</li>
+</ul>
+<hr>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The dataset contains records of Olympic athletes from various editions of the Summer and Winter Olympic Games. Each row typically represents one athlete’s participation in a specific Olympic event. This data can be used to explore relationships among athletes’ physical attributes (e.g., height, weight, age), examine how athletes are distributed among different teams and sports, and analyze the awarding of medals over time.</p>
+<hr>
+</section>
+<section id="explanation-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-variables">Explanation of Variables</h3>
+<p>ID:<br>
+A unique identifier assigned to each row in the dataset.</p>
+<p>Name:<br>
+The athlete’s name. (Some athletes may appear multiple times if they participated in multiple events or editions of the Games.)</p>
+<p>Sex:<br>
+The athlete’s reported sex, typically “M” for male or “F” for female.</p>
+<p>Age:<br>
+The athlete’s age (in years) at the time of competition.<br>
+Numeric values; may include missing data coded as NA.</p>
+<p>Height:<br>
+The athlete’s height (in centimeters).<br>
+Numeric values; may include missing data coded as NA.</p>
+<p>Weight:<br>
+The athlete’s weight (in kilograms).<br>
+Numeric values; may include missing data coded as NA.</p>
+<p>Team:<br>
+The name of the team the athlete represents (often the name of the country or a specific regional team).</p>
+<p>NOC:<br>
+The National Olympic Committee code, a three-letter abbreviation representing the athlete’s country or region (e.g., “USA,” “CHN,” “GBR”).</p>
+<p>Games:<br>
+The string representation of the exact Olympics edition, e.g., “1992 Winter,” “2000 Summer.”</p>
+<p>Year:<br>
+The year in which the recorded Olympic Games took place.</p>
+<p>Season:<br>
+Indicates whether the athlete participated in the Summer or Winter Olympic Games.</p>
+<p>City:<br>
+The city in which the Olympic Games took place.</p>
+<p>Sport:<br>
+The general sport category for the athlete’s event (e.g., “Athletics,” “Swimming,” “Gymnastics,” etc.).</p>
+<p>Event:<br>
+The specific event within the sport in which the athlete competed (e.g., “Basketball Men’s Basketball,” “100m Freestyle Men,” etc.).</p>
+<p>Medal:<br>
+The medal (if any) that the athlete won in their event. Typically “Gold,” “Silver,” “Bronze,” or “NA” if no medal was awarded.</p>
+<hr>
+</section>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<hr>
+<p>Data Import &amp; Deduplication:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"athlete_events.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()          <span class="co"># remove exact duplicate rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 271116 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (10): Name, Sex, Team, NOC, Games, Season, City, Sport, Event, Medal
+dbl  (5): ID, Age, Height, Weight, Year
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<section id="dataset-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-dimensions">1. Dataset Dimensions</h3>
+<p>How large is the dataset after accounting for any duplicates (rows × columns)?<br>
+Hint: Think about quick base-R or <code>dplyr</code> functions that reveal shape.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span> <span class="fu">distinct</span>() <span class="sc">|&gt;</span> <span class="fu">str</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [269,731 × 15] (S3: tbl_df/tbl/data.frame)
+ $ ID    : num [1:269731] 1 2 3 4 5 5 5 5 5 5 ...
+ $ Name  : chr [1:269731] "A Dijiang" "A Lamusi" "Gunnar Nielsen Aaby" "Edgar Lindenau Aabye" ...
+ $ Sex   : chr [1:269731] "M" "M" "M" "M" ...
+ $ Age   : num [1:269731] 24 23 24 34 21 21 25 25 27 27 ...
+ $ Height: num [1:269731] 180 170 NA NA 185 185 185 185 185 185 ...
+ $ Weight: num [1:269731] 80 60 NA NA 82 82 82 82 82 82 ...
+ $ Team  : chr [1:269731] "China" "China" "Denmark" "Denmark/Sweden" ...
+ $ NOC   : chr [1:269731] "CHN" "CHN" "DEN" "DEN" ...
+ $ Games : chr [1:269731] "1992 Summer" "2012 Summer" "1920 Summer" "1900 Summer" ...
+ $ Year  : num [1:269731] 1992 2012 1920 1900 1988 ...
+ $ Season: chr [1:269731] "Summer" "Summer" "Summer" "Summer" ...
+ $ City  : chr [1:269731] "Barcelona" "London" "Antwerpen" "Paris" ...
+ $ Sport : chr [1:269731] "Basketball" "Judo" "Football" "Tug-Of-War" ...
+ $ Event : chr [1:269731] "Basketball Men's Basketball" "Judo Men's Extra-Lightweight" "Football Men's Football" "Tug-Of-War Men's Tug-Of-War" ...
+ $ Medal : chr [1:269731] NA NA NA "Gold" ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#After removing duplicates, the data has 269,731 rows and 15 columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>
+</p>
+<hr>
+</section>
+<section id="summer-vs.-winter-participation" class="level3">
+<h3 class="anchored" data-anchor-id="summer-vs.-winter-participation">2. Summer vs.&nbsp;Winter Participation</h3>
+<section id="a-number-of-entries-per-season" class="level4">
+<h4 class="anchored" data-anchor-id="a-number-of-entries-per-season">2.a Number of entries per season</h4>
+<p>Hint: First separate records by season, then tally.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Season) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+# Groups:   Season [2]
+  Season      n
+  &lt;chr&gt;   &lt;int&gt;
+1 Summer 221167
+2 Winter  48564</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouped the entries by season. Summer had 221167 and Winter had 48564.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-visual-comparison-of-those-counts" class="level4">
+<h4 class="anchored" data-anchor-id="b-visual-comparison-of-those-counts">2.b Visual comparison of those counts</h4>
+<p>Hint: A simple bar chart will illustrate the difference.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Season) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_season_entries =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Season, <span class="at">y =</span> n_season_entries, <span class="at">fill =</span> Season)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Season"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of Entries"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Number of Entries in the Summer vs the Winter"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="unique-athletes-by-season" class="level3">
+<h3 class="anchored" data-anchor-id="unique-athletes-by-season">3. Unique Athletes by Season</h3>
+<section id="a-how-many-distinct-athletes-compete-in-the-summer-games" class="level4">
+<h4 class="anchored" data-anchor-id="a-how-many-distinct-athletes-compete-in-the-summer-games">3.a How many distinct athletes compete in the <strong>Summer</strong> Games?</h4>
+<p>Hint: Filter for one season, then remove repeated athlete IDs.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Season <span class="sc">==</span> <span class="st">"Summer"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(ID) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_ids =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+   n_ids
+   &lt;int&gt;
+1 116776</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered for season to be summer and used distinct to show no repeats. summarized to show number of id's. thre are 116776  distinct athletes.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-plot-distinct-athlete-counts-for-both-seasons" class="level4">
+<h4 class="anchored" data-anchor-id="b-plot-distinct-athlete-counts-for-both-seasons">3.b Plot distinct-athlete counts for both seasons</h4>
+<p>Hint: Summaries from 3.a can feed directly into a small bar plot.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Season) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(ID) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_ids =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Season, <span class="at">y =</span> n_ids, <span class="at">fill =</span> Season)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Season"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of Athletes"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Number of Athletes in Summer vs Winter"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="country-focus-in-the-winter-games" class="level3">
+<h3 class="anchored" data-anchor-id="country-focus-in-the-winter-games">4. Country Focus in the Winter Games</h3>
+<section id="a-unique-u.s.-athletes-in-winter-olympics" class="level4">
+<h4 class="anchored" data-anchor-id="a-unique-u.s.-athletes-in-winter-olympics">4.a Unique U.S. athletes in Winter Olympics</h4>
+<p>Hint: Combine a country filter with the distinct-athlete idea from 3.a.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span>, Season <span class="sc">==</span> <span class="st">"Winter"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(ID) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_ids =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  n_ids
+  &lt;int&gt;
+1  1407</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtered season and Team to be winter and United States. Used distinct() to find unique ID's and summarize() to count number of rows.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#There are 1407 unique U.S. athletes in the Winter Olympics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-top-10-countries-by-unique-winter-athletes" class="level4">
+<h4 class="anchored" data-anchor-id="b-top-10-countries-by-unique-winter-athletes">4.b Top 10 countries by unique Winter athletes</h4>
+<p>Hint: After counting, keep only the largest groups before plotting.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Season <span class="sc">==</span> <span class="st">"Winter"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Team) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(ID) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_team_members =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n_team_members)) <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Team, n_team_members), <span class="at">y =</span> n_team_members, <span class="at">fill =</span> <span class="st">"darkgreen"</span>)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of Athletes"</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Teams"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Top 10 Teams With Highest Number of Winter Athletes"</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by Season and grouped by team. Found distinct ID and counted number of rows for each to find team members. Arranged in descending order. Returned the top 10 teams with most members. Plotted bar chart and sorted in decreasing order.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="weight-distributions-sweden-vs.-usa" class="level3">
+<h3 class="anchored" data-anchor-id="weight-distributions-sweden-vs.-usa">5. Weight Distributions: Sweden vs.&nbsp;USA</h3>
+<section id="a-average-weight-after-deduplicating-by-year-season" class="level4">
+<h4 class="anchored" data-anchor-id="a-average-weight-after-deduplicating-by-year-season">5.a Average weight (after deduplicating by year &amp; season)</h4>
+<p>Hint: Avoid double-counting an athlete who appears multiple times within one Games.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"Sweden"</span> <span class="sc">|</span> Team <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Team) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(Name, Games, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_weight =</span> <span class="fu">mean</span>(Weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  Team          avg_weight
+  &lt;chr&gt;              &lt;dbl&gt;
+1 Sweden              77.0
+2 United States       75.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered teams as Sweden and USA. Grouped by Team and dropped all NA values. found distinct weights, names, and games to not double-count. Calculated average weight.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-histogram-of-swedish-athlete-weights" class="level4">
+<h4 class="anchored" data-anchor-id="b-histogram-of-swedish-athlete-weights">5.b Histogram of Swedish athlete weights</h4>
+<p>Hint: A single‐country filter plus <code>geom_histogram()</code> works.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"Sweden"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(Name, Games, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Weight) <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Weight)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Weight Distribution of Athletes from Team Sweden"</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by Team and found distinct Name, Games, and Weight. plotted histogram.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c-histogram-of-u.s.-athlete-weights" class="level4">
+<h4 class="anchored" data-anchor-id="c-histogram-of-u.s.-athlete-weights">5.c Histogram of U.S. athlete weights</h4>
+<p>Hint: Same graphic approach as 5.b but for USA.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(Name, Games, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Weight) <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Weight)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Weight Distribution of Athletes from Team United States"</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by Team and found distinct Name, Games, and Weight. plotted histogram.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-what-stands-out-when-comparing-the-two-histograms" class="level4">
+<h4 class="anchored" data-anchor-id="d-what-stands-out-when-comparing-the-two-histograms">5.d What stands out when comparing the two histograms?</h4>
+<p>Hint: Consider center, spread, and overall shape.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span> <span class="sc">|</span> Team <span class="sc">==</span> <span class="st">"Sweden"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Team) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>(Team, Name, Games, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Weight, <span class="at">fill =</span> Team)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">position =</span> <span class="st">"stack"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Weight Distribution of Athletes from Team United States vs Sweden"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"Stacked Histogram"</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The distribution of both Teams weights are relatively similar. Both histograms peak at the same average. There does seem to be more athletes on Team Sweden than Team United States.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="are-u.s.-basketball-players-taller" class="level3">
+<h3 class="anchored" data-anchor-id="are-u.s.-basketball-players-taller">6. Are U.S. Basketball Players Taller?</h3>
+<section id="a-average-median-heights-for-basketball-tennis-wrestling" class="level4">
+<h4 class="anchored" data-anchor-id="a-average-median-heights-for-basketball-tennis-wrestling">6.a Average &amp; median heights for Basketball, Tennis, Wrestling</h4>
+<p>Hint: Work inside one country, group by sport, then summarise.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sport) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg_heights =</span> <span class="fu">mean</span>(Height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_heights =</span> <span class="fu">median</span>(Height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 55 × 3
+   Sport            avg_heights median_heights
+   &lt;chr&gt;                  &lt;dbl&gt;          &lt;dbl&gt;
+ 1 Alpine Skiing           173.            173
+ 2 Archery                 176.            178
+ 3 Art Competitions        177.            178
+ 4 Athletics               179.            180
+ 5 Badminton               171.            170
+ 6 Baseball                186.            185
+ 7 Basketball              193.            193
+ 8 Biathlon                175.            177
+ 9 Boxing                  175.            175
+10 Canoeing                179.            178
+# ℹ 45 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by team as United States, grouped by sport, and summarized to find mean and average of each Sport's height.</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Basketball avg: 192.6070   median: 193.0</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Tennis avg: 180.9875   median: 82.5    </span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Wrestling  avg: 173.6679   median: 173.0   </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-box-plots-of-heights-for-the-three-sports" class="level4">
+<h4 class="anchored" data-anchor-id="b-box-plots-of-heights-for-the-three-sports">6.b Box plots of heights for the three sports</h4>
+<p>Hint: Box plots convey both center and spread in one view.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sport) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Sport <span class="sc">==</span> <span class="st">"Basketball"</span> <span class="sc">|</span> Sport <span class="sc">==</span> <span class="st">"Tennis"</span> <span class="sc">|</span> Sport <span class="sc">==</span> <span class="st">"Wrestling"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Sport, <span class="at">y =</span> Height, <span class="at">fill =</span> Sport, <span class="at">NA.RM =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Sport"</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Height (cm)"</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Heights of Basketball, Tennis, and Wrestling Athletes"</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 142 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtered team as United States and grouped by sport. Filtered sport as basketball, tennis, and wrestling. plotted boxplot.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="height-of-u.s.-volleyball-players-across-years" class="level3">
+<h3 class="anchored" data-anchor-id="height-of-u.s.-volleyball-players-across-years">7. Height of U.S. Volleyball Players Across Years</h3>
+<p>Create box plots by year. Do you notice any trend?<br>
+Hint: Treat the year like a categorical axis label for easier reading.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span> <span class="sc">&amp;</span> Sport <span class="sc">==</span> <span class="st">"Volleyball"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(Year), <span class="at">y =</span> Height)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Height (cm)"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Heights of Volleyball Players over the Years"</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The maximum and minimum of heights each increases each year but the heights of volleyball athletes on average stays the same.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="u.s.-participation-trend-in-summer-games" class="level3">
+<h3 class="anchored" data-anchor-id="u.s.-participation-trend-in-summer-games">8. U.S. Participation Trend in Summer Games</h3>
+<p>Plot the count of distinct U.S. athletes over time. Any clear pattern?<br>
+Hint: Keep year numeric to emphasise temporal spacing.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Year) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(Name) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_athletes =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> n_athletes)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by Team as United States, grouped by year, and found unique names for each year. Counted how many athletes for each year and plotted a scatter plot.</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#The number of U.S. Participants generally increases each year.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="gold-medals-over-time-netherlands-vs.-usa" class="level3">
+<h3 class="anchored" data-anchor-id="gold-medals-over-time-netherlands-vs.-usa">9. Gold Medals Over Time: Netherlands vs.&nbsp;USA</h3>
+<p>How many summer-Olympic gold medals has each country earned per Games? Visualise both time series.<br>
+Hint: Focus on medal type and season before counting.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> olympics <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Medal <span class="sc">==</span> <span class="st">"Gold"</span> <span class="sc">&amp;</span> Season <span class="sc">==</span> <span class="st">"Summer"</span>, Team <span class="sc">==</span> <span class="st">"United States"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Games) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_usa =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Games, <span class="at">y =</span> n_usa)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Games"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of Gold Medals"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"United States's Gold Medals in the Summer Olympics"</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> olympics <span class="sc">|&gt;</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Medal <span class="sc">==</span> <span class="st">"Gold"</span> <span class="sc">&amp;</span> Season <span class="sc">==</span> <span class="st">"Summer"</span>, Team <span class="sc">==</span> <span class="st">"Netherlands"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Games) <span class="sc">|&gt;</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_netherlands =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Games, <span class="at">y =</span> n_netherlands)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Games"</span>,</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Number of Gold Medals"</span>,</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Netherlands's Gold Medals in the Summer Olympics"</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by Team, Medal, and grouped by games. Counted number of rows for each country and plotted scatter plot for each.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="u.s.-gold-medals-by-sport-summer-games" class="level3">
+<h3 class="anchored" data-anchor-id="u.s.-gold-medals-by-sport-summer-games">10. U.S. Gold Medals by Sport (Summer Games)</h3>
+<p>Which sport has yielded the most U.S. golds? Display the ranking in a horizontal bar chart.<br>
+Hint: After tallying by sport, reorder bars so the biggest appears on top.</p>
+<p>Solution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>olympics <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"United States"</span>, Season <span class="sc">==</span> <span class="st">"Summer"</span>, Medal <span class="sc">==</span> <span class="st">"Gold"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Sport) <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_medals =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(n_medals) <span class="sc">|&gt;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Sport, n_medals), <span class="at">y =</span> n_medals)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of Medals"</span>,</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Sport"</span>,</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Number of Gold Medals Won by United States for Each Sport"</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_4_Kira_Damo_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered by team, medal, and season. counted number of rows and plotted as a bar chart. arranged bars in descending order.</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Swimming yielded the most gold medals.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>Thank You!</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

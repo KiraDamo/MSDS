@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kira Damo">
+
+<title>Project 6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="project_6_Kira_Damo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project_6_Kira_Damo_files/libs/quarto-html/quarto.js"></script>
+<script src="project_6_Kira_Damo_files/libs/quarto-html/popper.min.js"></script>
+<script src="project_6_Kira_Damo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project_6_Kira_Damo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project_6_Kira_Damo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project_6_Kira_Damo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project_6_Kira_Damo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project_6_Kira_Damo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project_6_Kira_Damo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 6</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kira Damo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="querying-and-analyzing-baseball-data-with-sql-and-r" class="level1">
+<h1>Querying and Analyzing Baseball Data with SQL and R</h1>
+<hr>
+<section id="project-guidelines-and-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="project-guidelines-and-requirements">Project Guidelines and Requirements</h2>
+<hr>
+<section id="guidelines" class="level3">
+<h3 class="anchored" data-anchor-id="guidelines">Guidelines</h3>
+<ul>
+<li><strong>Do not share assignment questions or solutions with anyone.</strong> This includes printing, distributing, or posting them on any online platform or social media.</li>
+<li><strong>Peer discussion is permitted for general concepts or troubleshooting, but NOT for sharing code or specific solutions.</strong></li>
+<li>Complete your coding tasks within the R code chunks provided under each question.</li>
+<li>Write clear, well-commented code. Use <code>#</code> to add explanations within code chunks as needed.</li>
+<li>Use the markdown sections to provide written explanations, interpretations, and conclusions.</li>
+<li>Complete the assignment independently. Reference materials such as textbooks, R documentation, and reputable online resources may be used for support.</li>
+<li>Ensure your name is included in the Honor Pledge section.</li>
+</ul>
+<hr>
+</section>
+<section id="required-software-and-packages" class="level3">
+<h3 class="anchored" data-anchor-id="required-software-and-packages">Required Software and Packages</h3>
+<ul>
+<li>R version 4.4.2 or higher is recommended.</li>
+<li>RStudio version 2025.05.1 Build 513 or higher is recommended.</li>
+<li>Make sure that the packages used in the project are installed and loaded in your R environment.</li>
+</ul>
+<hr>
+</section>
+<section id="deliverables" class="level3">
+<h3 class="anchored" data-anchor-id="deliverables">Deliverables</h3>
+<ol type="1">
+<li><strong>Prepare Your Quarto Document:</strong>
+<ul>
+<li><p>Your Quarto <code>.qmd</code> file should be fully executed, with all outputs visible under the relevant code chunks.</p></li>
+<li><p><strong>Do not include any active code for installing packages (such as <code>install.packages()</code>) or using the <code>View()</code> function or functions for checking raw data in your final document.</strong></p>
+<p>When preparing your document for rendering (knitting), certain types of code should be removed or commented out to ensure smooth execution. The table shows three categories of problematic code: package installation commands (which belong in the console), View() functions (which create interactive windows that break during knitting), and basic data inspection commands (which should be replaced with meaningful analysis). Following these guidelines helps create clean, professional R Markdown documents that render without errors.</p></li>
+</ul></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 30%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What to Remove</th>
+<th>Why Remove It</th>
+<th>Example Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Package Installation Commands</td>
+<td>These should be run in the console, not in your R Markdown document. They only need to be run once to install packages.</td>
+<td><del><code>install.packages("tidyverse")</code></del></td>
+</tr>
+<tr class="even">
+<td>View() Function Calls</td>
+<td>The <code>View()</code> function opens interactive windows that don’t work in knitted or rendered documents and can cause errors.</td>
+<td><del><code>View(mydata)</code></del> <br> <del><code>mydata |&gt; View()</code></del></td>
+</tr>
+<tr class="odd">
+<td>Raw Data Inspection</td>
+<td>These commands are for interactive data exploration and don’t provide meaningful output in final documents.</td>
+<td><del><code>mydata</code></del> <br> <del><code>head(mydata)</code></del> <br> <del><code>tail(mydata)</code></del> <br> <del><code>str(mydata)</code></del> <br> <del><code>glimpse(mydata)</code></del></td>
+</tr>
+</tbody>
+</table>
+<p>Key Points:</p>
+<ul>
+<li>Package installation should be done separately in the R console</li>
+<li>Interactive viewing functions (<code>View()</code>) don’t work in knitted or rendered documents</li>
+<li>Raw data inspection commands should be replaced with meaningful analysis or visualizations</li>
+</ul>
+<p>Best Practice: Remove or comment out these lines before rendering your final R Markdown document to ensure clean, error-free output.</p>
+<ol start="2" type="1">
+<li><strong>File Naming Convention:</strong>
+<ul>
+<li>Name your project exactly as follows, using all lowercase, underscores, and leading zero for project number:
+<ul>
+<li><code>project_##_firstname_lastname.qmd</code></li>
+<li>Example: <code>project_01_ilyas_ustun.qmd</code></li>
+</ul></li>
+</ul></li>
+<li><strong>Rendering:</strong>
+<ul>
+<li>Compile your Quarto document into an HTML report by clicking the <code>Render</code> button in RStudio. This will produce a <code>project_##_firstname_lastname.html</code> file in the same directory.</li>
+</ul></li>
+<li><strong>Submission:</strong>
+<ul>
+<li>Submit both the <code>.qmd</code> and <code>.html</code> files to the designated submission folder.</li>
+</ul></li>
+</ol>
+<hr>
+<blockquote class="blockquote">
+<p><strong>File Management Tip:</strong> If you are going to read in a data file, store all data files (e.g., <code>.csv</code>, <code>.xlsx</code>, <code>.xls</code>, <code>.txt</code>) in the same folder as your script for convenience. Otherwise, specify the full file path for your data.</p>
+</blockquote>
+<hr>
+<blockquote class="blockquote">
+<p>If you encounter errors when rendering your document to HTML, carefully review and correct your code. The entire document must run without errors for successful rendering.</p>
+</blockquote>
+<hr>
+</section>
+<section id="evaluation-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-criteria">Evaluation Criteria</h3>
+<ul>
+<li><strong>Accuracy and Completeness:</strong> Each question is worth equal points. The project is graded out of <strong>100 points</strong>.</li>
+<li><strong>Code Output</strong>: Your Quarto .qmd file should be fully executed, with all outputs visible under the relevant code chunks.</li>
+<li><strong>Code Quality:</strong> Code should be correct, well-structured, and commented appropriately.</li>
+<li><strong>Visualizations:</strong> Data visualizations must be accurate, relevant, and effectively labeled.</li>
+<li><strong>Adherence to Guidelines:</strong> File naming, formatting, and submission instructions must be followed.</li>
+</ul>
+<hr>
+</section>
+<section id="troubleshooting-and-support" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting-and-support">Troubleshooting and Support</h3>
+<p>If you require assistance or experience technical issues while working on the project, please follow these steps to get the help you need:</p>
+<ul>
+<li>Check Online Resources: First, try to find the answer to your question or solution to your problem by checking online resources such as:
+<ul>
+<li>Stack Overflow (for R programming-related issues)</li>
+<li>RStudio Community (for RStudio and R-related discussions)</li>
+<li>R-bloggers (for R tutorials, tips, and best practices)</li>
+</ul></li>
+<li>Discussion Forum: If you can’t find the information you’re looking for, post your question on the course discussion forum. Your peers or instructors may have encountered a similar issue and can provide insights or guidance on R or data science concepts.</li>
+<li>Provide Context: When posting your question, please include relevant details such as:
+<ul>
+<li>A clear description of the problem or question</li>
+<li>The code you are working with (if applicable)</li>
+<li>Any error messages you are encountering</li>
+<li>The name of the dataset or context related to your question</li>
+</ul></li>
+<li>Contact the professor: If you’re unable to resolve your issue through the above steps, or if your question is of a personal or sensitive nature, please don’t hesitate to contact Dr.&nbsp;Ilyas Ustun directly.</li>
+</ul>
+<p>By following these steps, you’ll not only potentially get a quicker resolution to your issue, but you’ll also contribute to building a resourceful and supportive community within the course.</p>
+<hr>
+</section>
+<section id="submission-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="submission-checklist">Submission Checklist</h3>
+<p>Before submitting your assignment, please confirm each item:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="">My <code>.qmd</code> file is named correctly (<code>project_##_firstname_lastname.qmd</code>) and runs without errors.</label></li>
+<li><label><input type="checkbox" checked="">All code chunks have been executed, and outputs are visible under each question.</label></li>
+<li><label><input type="checkbox" checked="">There is no active <code>install.packages()</code> or <code>View()</code> code (these are commented out or removed).</label></li>
+<li><label><input type="checkbox" checked="">The final HTML report is rendered and saved in the same directory as the <code>.qmd</code> file.</label></li>
+<li><label><input type="checkbox" checked="">Both <code>.qmd</code> and <code>.html</code> files are uploaded to the designated submission folder.</label></li>
+<li><label><input type="checkbox" checked="">All data visualizations are appropriate, clear, and effectively labeled.</label></li>
+<li><label><input type="checkbox" checked="">My name and the date are included in the Honor Pledge section.</label></li>
+<li><label><input type="checkbox" checked="">I have not shared or received code or solutions from others.</label></li>
+</ul>
+<hr>
+</section>
+<section id="honor-pledge" class="level3">
+<h3 class="anchored" data-anchor-id="honor-pledge">Honor Pledge</h3>
+<p><strong>Honor Pledge:</strong><br>
+I affirm that all work on this assignment is my own and that I have not shared or received unauthorized assistance.</p>
+<ul>
+<li>Name: Kira Damo</li>
+<li>Date: July 18th, 2025</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="project-overview-and-data-description" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview-and-data-description">Project Overview and Data Description</h2>
+<hr>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Welcome to the Baseball Data Analysis Project! In this assignment, you will take on the role of a data analyst for a sports analytics firm. Your task is to extract meaningful information from a comprehensive baseball database using SQL queries within an R environment. After retrieving the data, you will use the <code>dplyr</code> and <code>ggplot2</code> packages to summarize, manipulate, and visualize your findings.</p>
+<p>The general goal is to answer specific questions about players, teams, and salaries, blending database skills with modern R data analysis techniques.</p>
+</section>
+<section id="what-youll-learn" class="level3">
+<h3 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h3>
+<ul>
+<li>How to connect to an SQLite database and execute SQL queries directly from R.</li>
+<li>Using SQL to select, filter, join, and aggregate data from multiple tables.</li>
+<li>Combining SQL data retrieval with <code>dplyr</code> for further data wrangling and summarization.</li>
+<li>Creating insightful and professional plots from your data using <code>ggplot2</code>.</li>
+</ul>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>We are using the <strong>Lahman Baseball Database</strong>, one of the most extensive and widely-used collections of baseball statistics available. For this project, we have created a local SQLite database containing five key tables from this collection: <code>People</code>, <code>Batting</code>, <code>Pitching</code>, <code>Salaries</code>, and <code>Teams</code>.</p>
+</section>
+<section id="explanation-of-variables" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-variables">Explanation of Variables</h3>
+<p>We will primarily focus on these tables and their key variables:</p>
+<ul>
+<li><strong><code>People</code></strong>: Contains biographical information for every person in the database.
+<ul>
+<li><code>playerID</code>: A unique code assigned to each player. This is the primary key for joining with other tables.</li>
+<li><code>nameFirst</code>, <code>nameLast</code>: The player’s first and last name.</li>
+<li><code>birthYear</code>, <code>birthCountry</code>: The player’s birth year and country.</li>
+</ul></li>
+<li><strong><code>Batting</code></strong>: Contains season-by-season batting statistics for players.
+<ul>
+<li><code>playerID</code>: Unique player code.</li>
+<li><code>yearID</code>: The year of the season.</li>
+<li><code>teamID</code>: The team the player played for.</li>
+<li><code>G</code>: Games played.</li>
+<li><code>H</code>: Hits.</li>
+<li><code>HR</code>: Home Runs.</li>
+<li><code>RBI</code>: Runs Batted In.</li>
+</ul></li>
+<li><strong><code>Salaries</code></strong>: Contains player salary data (available from 1985 onwards).
+<ul>
+<li><code>yearID</code>: The year of the season.</li>
+<li><code>teamID</code>: The team the player played for.</li>
+<li><code>playerID</code>: Unique player code.</li>
+<li><code>salary</code>: The player’s salary in USD for that season.</li>
+</ul></li>
+<li><strong><code>Teams</code></strong>: Contains season-by-season statistics for each team.
+<ul>
+<li><code>yearID</code>: The year of the season.</li>
+<li><code>teamID</code>: The three-letter abbreviation for the team.</li>
+<li><code>W</code>: Team wins.</li>
+<li><code>L</code>: Team losses.</li>
+<li><code>name</code>: The full team name.</li>
+</ul></li>
+</ul>
+<p>For a complete data dictionary, you can visit the following:</p>
+<ul>
+<li>http://www.seanlahman.com/</li>
+<li>https://sabr.org/lahman-database/</li>
+</ul>
+</section>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Before we begin, run the following code chunk to load the necessary libraries and create our SQLite database. We will use the <code>Lahman</code> R package, which contains historical baseball data, and write its tables into a local SQLite database file named <code>lahman.db</code>. This allows us to practice real SQL queries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("Lahman") # Uncomment this line if you haven't installed the lahman package yet</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a connection to a new SQLite database</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The database will be created in your current working directory</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"lahman.db"</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the data frames from the lahman package into the database as tables</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"People"</span>, Lahman<span class="sc">::</span>People, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"Batting"</span>, Lahman<span class="sc">::</span>Batting, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"Pitching"</span>, Lahman<span class="sc">::</span>Pitching, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"Salaries"</span>, Lahman<span class="sc">::</span>Salaries, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"Teams"</span>, Lahman<span class="sc">::</span>Teams, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># List all tables in our new database</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Batting"  "People"   "Pitching" "Salaries" "Teams"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: We will keep the connection 'con' open for all our queries.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># At the very end of our session, we would disconnect using dbDisconnect(con).</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dbDisconnect(con)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<hr>
+<section id="question-1-retrieving-basic-player-information" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-retrieving-basic-player-information">Question 1: Retrieving Basic Player Information</h3>
+<p>Retrieve all information for the first 15 players listed in the <code>People</code> table.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>How do you select all columns from a table in SQL? There’s a specific SQL clause to restrict the query output to a certain number of rows.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>query <span class="ot">=</span> <span class="st">"SELECT * from People LIMIT 15"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    playerID birthYear birthMonth birthDay    birthCity birthCountry birthState
+1  aardsda01      1981         12       27       Denver          USA         CO
+2  aaronha01      1934          2        5       Mobile          USA         AL
+3  aaronto01      1939          8        5       Mobile          USA         AL
+4   aasedo01      1954          9        8       Orange          USA         CA
+5   abadan01      1972          8       25   Palm Beach          USA         FL
+6   abadfe01      1985         12       17    La Romana         D.R.  La Romana
+7  abadijo01      1850         11        4 Philadelphia          USA         PA
+8  abbated01      1877          4       15      Latrobe          USA         PA
+9  abbeybe01      1869         11       11        Essex          USA         VT
+10 abbeych01      1866         10       14   Falls City          USA         NE
+11 abbotco01      1995          9       20    San Diego          USA         CA
+12 abbotda01      1862          3       16      Portage          USA         OH
+13 abbotfr01      1874         10       22   Versailles          USA         OH
+14 abbotgl01      1951          2       16  Little Rock          USA         AR
+15 abbotje01      1972          8       17      Atlanta          USA         GA
+   deathYear deathMonth deathDay deathCountry deathState       deathCity
+1         NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+2       2021          1       22          USA         GA         Atlanta
+3       1984          8       16          USA         GA         Atlanta
+4         NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+5         NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+6         NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+7       1905          5       17          USA         NJ       Pemberton
+8       1957          1        6          USA         FL Fort Lauderdale
+9       1962          6       11          USA         VT      Colchester
+10      1926          4       27          USA         CA   San Francisco
+11        NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+12      1930          2       13          USA         MI     Ottawa Lake
+13      1935          6       11          USA         CA     Los Angeles
+14        NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+15        NA         NA       NA         &lt;NA&gt;       &lt;NA&gt;            &lt;NA&gt;
+   nameFirst    nameLast        nameGiven weight height bats throws      debut
+1      David     Aardsma      David Allan    215     75    R      R 2004-04-06
+2       Hank       Aaron      Henry Louis    180     72    R      R 1954-04-13
+3     Tommie       Aaron       Tommie Lee    190     75    R      R 1962-04-10
+4        Don        Aase   Donald William    190     75    R      R 1977-07-26
+5       Andy        Abad    Fausto Andres    184     73    L      L 2001-09-10
+6   Fernando        Abad Fernando Antonio    235     74    L      L 2010-07-28
+7       John      Abadie          John W.    192     72    R      R 1875-04-26
+8         Ed Abbaticchio     Edward James    170     71    R      R 1897-09-04
+9       Bert       Abbey        Bert Wood    175     71    R      R 1892-06-14
+10   Charlie       Abbey       Charles S.    169     68    L      L 1893-08-16
+11      Cory      Abbott       Cory James    220     74    R      R 2021-06-05
+12       Dan      Abbott Leander Franklin    190     71    R      R 1890-04-19
+13      Fred      Abbott  Harry Frederick    180     70    R      R 1903-04-25
+14     Glenn      Abbott    William Glenn    200     78    R      R 1973-07-29
+15      Jeff      Abbott  Jeffrey William    190     74    R      L 1997-06-10
+     bbrefID  finalGame  retroID deathDate birthDate
+1  aardsda01 2015-08-23 aardd001        NA      4378
+2  aaronha01 1976-10-03 aaroh101     18649    -13114
+3  aaronto01 1971-09-26 aarot101      5341    -11107
+4   aasedo01 1990-10-03 aased001        NA     -5594
+5   abadan01 2006-04-13 abada001        NA       967
+6   abadfe01 2021-10-01 abadf001        NA      5829
+7  abadijo01 1875-06-10 abadj101    -23605    -43522
+8  abbated01 1910-09-15 abbae101     -4743    -33863
+9  abbeybe01 1896-09-23 abbeb101     -2761    -36575
+10 abbeych01 1897-08-19 abbec101    -15955    -37699
+11 abbotco01 2022-10-04 abboc001        NA      9393
+12 abbotda01 1890-05-23 abbod101    -14567    -39372
+13 abbotfr01 1905-09-20 abbof101    -12623    -34769
+14 abbotgl01 1984-08-08 abbog001        NA     -6894
+15 abbotje01 2001-09-29 abboj002        NA       959</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected all columns up to the 15th person.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-2-finding-a-specific-players-batting-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-finding-a-specific-players-batting-statistics">Question 2: Finding a Specific Player’s Batting Statistics</h3>
+<p>Find all the batting statistics for the player with the <code>playerID</code> of ‘ruthba01’ (Babe Ruth).</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Think about how you would filter rows in SQL to match a specific condition. What part of the <code>SELECT</code> statement allows this? The <code>playerID</code> is a text value, which requires special formatting in your condition.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>q2_query <span class="ot">=</span> <span class="st">"SELECT * FROM Batting</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">            WHERE playerID = 'ruthba01'"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, q2_query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   playerID yearID stint teamID lgID   G  AB   R   H X2B X3B HR RBI SB CS  BB
+1  ruthba01   1914     1    BOS   AL   5  10   1   2   1   0  0   2  0 NA   0
+2  ruthba01   1915     1    BOS   AL  42  92  16  29  10   1  4  21  0 NA   9
+3  ruthba01   1916     1    BOS   AL  67 136  18  37   5   3  3  15  0 NA  10
+4  ruthba01   1917     1    BOS   AL  52 123  14  40   6   3  2  12  0 NA  12
+5  ruthba01   1918     1    BOS   AL  95 317  50  95  26  11 11  66  6 NA  58
+6  ruthba01   1919     1    BOS   AL 130 432 103 139  34  12 29 114  7 NA 101
+7  ruthba01   1920     1    NYA   AL 142 457 158 172  36   9 54 137 14 14 150
+8  ruthba01   1921     1    NYA   AL 152 540 177 204  44  16 59 171 17 13 145
+9  ruthba01   1922     1    NYA   AL 110 406  94 128  24   8 35  99  2  5  84
+10 ruthba01   1923     1    NYA   AL 152 522 151 205  45  13 41 131 17 21 170
+11 ruthba01   1924     1    NYA   AL 153 529 143 200  39   7 46 121  9 13 142
+12 ruthba01   1925     1    NYA   AL  98 359  61 104  12   2 25  66  2  4  59
+13 ruthba01   1926     1    NYA   AL 152 495 139 184  30   5 47 150 11  9 144
+14 ruthba01   1927     1    NYA   AL 151 540 158 192  29   8 60 164  7  6 137
+15 ruthba01   1928     1    NYA   AL 154 536 163 173  29   8 54 142  4  5 137
+16 ruthba01   1929     1    NYA   AL 135 499 121 172  26   6 46 154  5  3  72
+17 ruthba01   1930     1    NYA   AL 145 518 150 186  28   9 49 153 10 10 136
+18 ruthba01   1931     1    NYA   AL 145 534 149 199  31   3 46 163  5  4 128
+19 ruthba01   1932     1    NYA   AL 133 457 120 156  13   5 41 137  2  2 130
+20 ruthba01   1933     1    NYA   AL 137 459  97 138  21   3 34 103  4  5 114
+21 ruthba01   1934     1    NYA   AL 125 365  78 105  17   4 22  84  1  3 104
+22 ruthba01   1935     1    BSN   NL  28  72  13  13   0   0  6  12  0 NA  20
+   SO IBB HBP SH SF GIDP
+1   4  NA   0  0 NA   NA
+2  23  NA   0  2 NA   NA
+3  23  NA   0  4 NA   NA
+4  18  NA   0  7 NA   NA
+5  58  NA   2  3 NA   NA
+6  58  NA   6  3 NA   NA
+7  80  NA   3  5 NA   NA
+8  81  NA   4  4 NA   NA
+9  80  NA   1  4 NA   NA
+10 93  NA   4  3 NA   NA
+11 81  NA   4  6 NA   NA
+12 68  NA   2  6 NA   NA
+13 76  NA   3 10 NA   NA
+14 89  NA   0 14 NA   NA
+15 87  NA   3  8 NA   NA
+16 60  NA   3 13 NA   NA
+17 61  NA   1 21 NA   NA
+18 51  NA   1  0 NA   NA
+19 62  NA   2  0 NA   NA
+20 90  NA   2  0 NA   NA
+21 63  NA   2  0 NA   NA
+22 24  NA   0  0 NA    2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected all columns and filtered for Babe Ruth</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-3-counting-players-by-country-of-birth" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-counting-players-by-country-of-birth">Question 3: Counting Players by Country of Birth</h3>
+<p>Count the number of players from each country. Order the results in descending order of the count.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>To solve this, you need to perform an aggregation. Which SQL function counts rows? How do you apply this counting function to each country separately? Finally, how can you sort the final output?</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>q3_query <span class="ot">=</span> <span class="st">"SELECT birthCountry, COUNT(*) AS CountryCount</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">            FROM People</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">            GROUP BY birthCountry</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">            ORDER BY CountryCount DESC"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, q3_query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     birthCountry CountryCount
+1             USA        18098
+2            D.R.          890
+3       Venezuela          472
+4            P.R.          281
+5             CAN          266
+6            Cuba          237
+7          Mexico          147
+8           Japan           76
+9          Panama           70
+10           &lt;NA&gt;           55
+11 United Kingdom           50
+12        Ireland           50
+13        Germany           47
+14      Australia           34
+15       Colombia           31
+16    South Korea           28
+17        Curacao           17
+18         Taiwan           16
+19      Nicaragua           15
+20           V.I.           14
+21    Netherlands           11
+22        Bahamas            8
+23          Italy            7
+24         France            7
+25         Russia            6
+26         Poland            6
+27          Aruba            6
+28         Sweden            5
+29 Czech Republic            5
+30         Brazil            5
+31          Spain            4
+32        Jamaica            4
+33        Ukriane            3
+34         Norway            3
+35        Austria            3
+36   South Africa            2
+37       Slovakia            2
+38   Saudi Arabia            2
+39       Portugal            2
+40       Honduras            2
+41           Guam            2
+42        England            2
+43       Viet Nam            1
+44    Switzerland            1
+45      Singapore            1
+46    Philippines            1
+47           Peru            1
+48      Lithuania            1
+49         Latvia            1
+50      Indonesia            1
+51      Hong Kong            1
+52         Greece            1
+53        Finland            1
+54        Denmark            1
+55          China            1
+56        Bohemia            1
+57         Belize            1
+58        Belgium            1
+59 Atlantic Ocean            1
+60 American Samoa            1
+61    Afghanistan            1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected birthCountry and counted all rows for each birth country. sorted in descending order.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-4-joining-tables-to-find-player-salaries" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-joining-tables-to-find-player-salaries">Question 4: Joining Tables to Find Player Salaries</h3>
+<p>Find the first name, last name, and salary for all players in the year 2015. Retrieve only the first 10 results.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>The player names and salaries are in two different tables. How do you combine information from multiple tables in a single SQL query? You’ll need to identify a column that both tables share to link them.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>q4_query <span class="ot">=</span> <span class="st">"SELECT nameFirst, nameLast, salary</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">            FROM People</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">            LEFT JOIN Salaries</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">            ON People.playerID = Salaries.playerID</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">            WHERE yearID = 2015</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">            ORDER BY salary DESC</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="st">            LIMIT 10"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, q4_query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   nameFirst  nameLast   salary
+1    Clayton   Kershaw 32571000
+2     Justin Verlander 28000000
+3       Zack   Greinke 25000000
+4       Ryan    Howard 25000000
+5      Felix Hernandez 24857000
+6     Albert    Pujols 24000000
+7   Robinson      Cano 24000000
+8     Prince   Fielder 24000000
+9       Cole    Hamels 23500000
+10      Mark  Teixeira 23125000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected the first name, last name, and salary and joined the People and Salaries tables. Filtered for 2015 and ordered in descending order. returned the top 10 players.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="question-5-top-10-home-run-hitters-of-the-2000s" class="level3">
+<h3 class="anchored" data-anchor-id="question-5-top-10-home-run-hitters-of-the-2000s">Question 5: Top 10 Home Run Hitters of the 2000s</h3>
+<p>Identify the top 10 players with the most total home runs (HR) between the years 2000 and 2009, inclusive. Display their first name, last name, and total home runs. Then, create a bar chart visualizing these top 10 players.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Your SQL query will need to combine tables, sum up a player’s stats across multiple years, and filter for a specific date range. For the <code>ggplot2</code> chart, consider how you can order the bars to make the visualization more effective. The <code>reorder()</code> function can be very helpful inside <code>aes()</code>.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>q5_query <span class="ot">=</span> <span class="st">"SELECT People.nameFirst, People.nameLast, SUM(Batting.HR) as total_HR</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">            FROM People</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">            LEFT JOIN Batting</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">            ON People.playerID = Batting.playerID</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">            WHERE Batting.yearID BETWEEN 2000 AND 2009</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">            GROUP BY People.nameFirst, People.nameLast</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">            ORDER BY total_HR DESC</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">            LIMIT 10"</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>HR_df <span class="ot">=</span> <span class="fu">dbGetQuery</span>(con, q5_query)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>HR_df <span class="ot">=</span> HR_df <span class="sc">|&gt;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">fullname =</span> <span class="fu">str_glue</span>(<span class="st">"{nameFirst} {nameLast}"</span>))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>HR_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   nameFirst  nameLast total_HR          fullname
+1       Alex Rodriguez      435    Alex Rodriguez
+2        Jim     Thome      368         Jim Thome
+3     Albert    Pujols      366     Albert Pujols
+4      Manny   Ramirez      348     Manny Ramirez
+5     Carlos   Delgado      324    Carlos Delgado
+6      Barry     Bonds      317       Barry Bonds
+7       Adam      Dunn      316         Adam Dunn
+8   Vladimir  Guerrero      315 Vladimir Guerrero
+9      Lance   Berkman      309     Lance Berkman
+10    Andruw     Jones      308      Andruw Jones</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> HR_df, <span class="fu">aes</span>(<span class="at">x=</span> <span class="fu">reorder</span>(fullname, total_HR), <span class="at">y =</span> total_HR)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Player"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Total Home Runs"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Players With The Most Home Runs From 2000 to 2009"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_6_Kira_Damo_files/figure-html/q5-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#joined tables and added total home runs within the years of 2000 and 2009. sorted in descending order and returned top 10 players. created a new column and concatenated first and last name. created bar chart in descending order.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong>Project Focus: Analyzing Team Spending and Performance</strong></p>
+<p>The next set of questions will build on each other. Our goal is to investigate the relationship between how much a team spends on salaries and how many games it wins in a given season. We will focus on the year 2012.</p>
+<hr>
+</section>
+<section id="question-6-calculate-total-team-payrolls-for-2012" class="level3">
+<h3 class="anchored" data-anchor-id="question-6-calculate-total-team-payrolls-for-2012">Question 6: Calculate Total Team Payrolls for 2012</h3>
+<p>First, retrieve the total salary (payroll) for each team for the year 2012. The result should have two columns: <code>teamID</code> and <code>total_payroll</code>.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>All the data you need is in the <code>Salaries</code> table. Think about which SQL aggregate function calculates a total. How do you apply this function to get a separate total for each team?</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>q6_query <span class="ot">=</span> <span class="st">"SELECT teamID, SUM(salary) AS total_payroll FROM Salaries</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">             WHERE yearID = 2012</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">            GROUP BY teamID</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">            "</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>team_payrolls_2012 <span class="ot">=</span> <span class="fu">dbGetQuery</span>(con, q6_query)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>team_payrolls_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   teamID total_payroll
+1     ARI      73804833
+2     ATL      82829942
+3     BAL      77353999
+4     BOS     173186617
+5     CHA      96919500
+6     CHN      88197033
+7     CIN      82203616
+8     CLE      78430300
+9     COL      78069571
+10    DET     132300000
+11    HOU      60651000
+12    KCA      60916225
+13    LAA     154485166
+14    LAN      95143575
+15    MIA     118078000
+16    MIL      97653944
+17    MIN      94085000
+18    NYA     196522289
+19    NYN      93353983
+20    OAK      55372500
+21    PHI     174538938
+22    PIT      62951999
+23    SDN      55244700
+24    SEA      81978100
+25    SFN     117620683
+26    SLN     110300862
+27    TBA      64173500
+28    TEX     120510974
+29    TOR      75009200
+30    WAS      80855143</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected teamID, added salaries and named variable total_payroll. filtered for year as 2012 and grouped by teamID.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-7-retrieve-team-wins-for-2012" class="level3">
+<h3 class="anchored" data-anchor-id="question-7-retrieve-team-wins-for-2012">Question 7: Retrieve Team Wins for 2012</h3>
+<p>Now, let’s get the performance data. Retrieve the number of wins (<code>W</code>), losses (<code>L</code>), and the full team name (<code>name</code>) for each team for the year 2012.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Look in the <code>Teams</code> table for the columns you need. Remember to filter your query to include data only from the specified year.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>q7_query <span class="ot">=</span> <span class="st">"SELECT teamID, name, W, L FROM Teams</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="st">            WHERE yearID = 2012"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>team_wins_2012 <span class="ot">=</span> <span class="fu">dbGetQuery</span>(con, q7_query)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>team_wins_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   teamID                          name  W   L
+1     BAL             Baltimore Orioles 93  69
+2     BOS                Boston Red Sox 69  93
+3     CHA             Chicago White Sox 85  77
+4     CLE             Cleveland Indians 68  94
+5     DET                Detroit Tigers 88  74
+6     KCA            Kansas City Royals 72  90
+7     LAA Los Angeles Angels of Anaheim 89  73
+8     MIN               Minnesota Twins 66  96
+9     NYA              New York Yankees 95  67
+10    OAK             Oakland Athletics 94  68
+11    SEA              Seattle Mariners 75  87
+12    TBA                Tampa Bay Rays 90  72
+13    TEX                 Texas Rangers 93  69
+14    TOR             Toronto Blue Jays 73  89
+15    ARI          Arizona Diamondbacks 81  81
+16    ATL                Atlanta Braves 94  68
+17    CHN                  Chicago Cubs 61 101
+18    CIN               Cincinnati Reds 97  65
+19    COL              Colorado Rockies 64  98
+20    HOU                Houston Astros 55 107
+21    LAN           Los Angeles Dodgers 86  76
+22    MIA                 Miami Marlins 69  93
+23    MIL             Milwaukee Brewers 83  79
+24    NYN                 New York Mets 74  88
+25    PHI         Philadelphia Phillies 81  81
+26    PIT            Pittsburgh Pirates 79  83
+27    SDN              San Diego Padres 76  86
+28    SFN          San Francisco Giants 94  68
+29    SLN           St. Louis Cardinals 88  74
+30    WAS          Washington Nationals 98  64</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selected teamID name, W, L and filtered for year as 2012.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-8-combine-payroll-and-wins-data" class="level3">
+<h3 class="anchored" data-anchor-id="question-8-combine-payroll-and-wins-data">Question 8: Combine Payroll and Wins Data</h3>
+<p>Using the two data frames you created in the previous questions (<code>team_payrolls_2012</code> and <code>team_wins_2012</code>), combine them into a single data frame.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Now that you have two separate data frames in R, how can you combine them into one? Look for a function in the <code>dplyr</code> package that merges data frames based on a common column.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_2012 <span class="ot">=</span> <span class="fu">inner_join</span>(team_payrolls_2012, team_wins_2012, <span class="fu">join_by</span>(teamID))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   teamID total_payroll                          name  W   L
+1     ARI      73804833          Arizona Diamondbacks 81  81
+2     ATL      82829942                Atlanta Braves 94  68
+3     BAL      77353999             Baltimore Orioles 93  69
+4     BOS     173186617                Boston Red Sox 69  93
+5     CHA      96919500             Chicago White Sox 85  77
+6     CHN      88197033                  Chicago Cubs 61 101
+7     CIN      82203616               Cincinnati Reds 97  65
+8     CLE      78430300             Cleveland Indians 68  94
+9     COL      78069571              Colorado Rockies 64  98
+10    DET     132300000                Detroit Tigers 88  74
+11    HOU      60651000                Houston Astros 55 107
+12    KCA      60916225            Kansas City Royals 72  90
+13    LAA     154485166 Los Angeles Angels of Anaheim 89  73
+14    LAN      95143575           Los Angeles Dodgers 86  76
+15    MIA     118078000                 Miami Marlins 69  93
+16    MIL      97653944             Milwaukee Brewers 83  79
+17    MIN      94085000               Minnesota Twins 66  96
+18    NYA     196522289              New York Yankees 95  67
+19    NYN      93353983                 New York Mets 74  88
+20    OAK      55372500             Oakland Athletics 94  68
+21    PHI     174538938         Philadelphia Phillies 81  81
+22    PIT      62951999            Pittsburgh Pirates 79  83
+23    SDN      55244700              San Diego Padres 76  86
+24    SEA      81978100              Seattle Mariners 75  87
+25    SFN     117620683          San Francisco Giants 94  68
+26    SLN     110300862           St. Louis Cardinals 88  74
+27    TBA      64173500                Tampa Bay Rays 90  72
+28    TEX     120510974                 Texas Rangers 93  69
+29    TOR      75009200             Toronto Blue Jays 73  89
+30    WAS      80855143          Washington Nationals 98  64</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#used inner join to combine 2012 payrolls data and 2012 team wins data. primary key is teamID.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-9-calculate-cost-per-win" class="level3">
+<h3 class="anchored" data-anchor-id="question-9-calculate-cost-per-win">Question 9: Calculate “Cost per Win”</h3>
+<p>Using the combined data frame from Question 8, add a new column named <code>cost_per_win</code>. This column should be calculated by dividing the team’s total payroll by its number of wins. Also, create a <code>payroll_in_millions</code> column for easier interpretation.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Which <code>dplyr</code> function allows you to create new columns based on calculations from existing columns? The formulas are a straightforward division based on the column descriptions.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_2012 <span class="ot">=</span> df_2012 <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">payroll_in_millions =</span> total_payroll <span class="sc">/</span> <span class="dv">1000000</span>, <span class="at">cost_per_win =</span> total_payroll <span class="sc">/</span> W)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>df_2012</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   teamID total_payroll                          name  W   L
+1     ARI      73804833          Arizona Diamondbacks 81  81
+2     ATL      82829942                Atlanta Braves 94  68
+3     BAL      77353999             Baltimore Orioles 93  69
+4     BOS     173186617                Boston Red Sox 69  93
+5     CHA      96919500             Chicago White Sox 85  77
+6     CHN      88197033                  Chicago Cubs 61 101
+7     CIN      82203616               Cincinnati Reds 97  65
+8     CLE      78430300             Cleveland Indians 68  94
+9     COL      78069571              Colorado Rockies 64  98
+10    DET     132300000                Detroit Tigers 88  74
+11    HOU      60651000                Houston Astros 55 107
+12    KCA      60916225            Kansas City Royals 72  90
+13    LAA     154485166 Los Angeles Angels of Anaheim 89  73
+14    LAN      95143575           Los Angeles Dodgers 86  76
+15    MIA     118078000                 Miami Marlins 69  93
+16    MIL      97653944             Milwaukee Brewers 83  79
+17    MIN      94085000               Minnesota Twins 66  96
+18    NYA     196522289              New York Yankees 95  67
+19    NYN      93353983                 New York Mets 74  88
+20    OAK      55372500             Oakland Athletics 94  68
+21    PHI     174538938         Philadelphia Phillies 81  81
+22    PIT      62951999            Pittsburgh Pirates 79  83
+23    SDN      55244700              San Diego Padres 76  86
+24    SEA      81978100              Seattle Mariners 75  87
+25    SFN     117620683          San Francisco Giants 94  68
+26    SLN     110300862           St. Louis Cardinals 88  74
+27    TBA      64173500                Tampa Bay Rays 90  72
+28    TEX     120510974                 Texas Rangers 93  69
+29    TOR      75009200             Toronto Blue Jays 73  89
+30    WAS      80855143          Washington Nationals 98  64
+   payroll_in_millions cost_per_win
+1             73.80483     911170.8
+2             82.82994     881169.6
+3             77.35400     831763.4
+4            173.18662    2509951.0
+5             96.91950    1140229.4
+6             88.19703    1445853.0
+7             82.20362     847460.0
+8             78.43030    1153386.8
+9             78.06957    1219837.0
+10           132.30000    1503409.1
+11            60.65100    1102745.5
+12            60.91622     846058.7
+13           154.48517    1735788.4
+14            95.14357    1106320.6
+15           118.07800    1711275.4
+16            97.65394    1176553.5
+17            94.08500    1425530.3
+18           196.52229    2068655.7
+19            93.35398    1261540.3
+20            55.37250     589069.1
+21           174.53894    2154801.7
+22            62.95200     796860.7
+23            55.24470     726903.9
+24            81.97810    1093041.3
+25           117.62068    1251283.9
+26           110.30086    1253418.9
+27            64.17350     713038.9
+28           120.51097    1295816.9
+29            75.00920    1027523.3
+30            80.85514     825052.5</code></pre>
+</div>
+</div>
+</section>
+<section id="question-10-visualize-team-spending-and-performance" class="level3">
+<h3 class="anchored" data-anchor-id="question-10-visualize-team-spending-and-performance">Question 10: Visualize Team Spending and Performance</h3>
+<p>Create two plots to visualize the 2012 team performance data: 1. A scatter plot showing the relationship between a team’s payroll (in millions) and their total number of wins. 2. A bar chart showing the “cost per win” for each team, ordered from least to most efficient.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>For the first plot, a scatter plot is ideal for showing the relationship between two continuous variables. What <code>geom</code> creates scatter plots? For the second plot, a bar chart will work well. How can you make the bar chart easier to read when you have long labels (team names)? Also, think about how to order the bars logically.</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> df_2012 <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> W, <span class="at">y =</span> payroll_in_millions, <span class="at">color =</span> name)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Number of Wins"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Payroll (in millions)"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Payroll (in Millions) vs Number of Wins in 2012"</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> df_2012 <span class="sc">|&gt;</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cost_per_win, <span class="at">y =</span> <span class="fu">reorder</span>(name, cost_per_win), <span class="at">fill =</span> <span class="st">"red"</span>)) <span class="sc">+</span> <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Team"</span>,</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Cost per Win"</span>,</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Cost per Win for Each Team in 2012"</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_6_Kira_Damo_files/figure-html/q10-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_6_Kira_Damo_files/figure-html/q10-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plotted name vs payroll and added needed labels. plotted as scatter plot and filled as name to distinguish each team as a point.</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#added team vs cost per win and arranged in descending order. added labels as needed.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># At the end of the project, close the database connection</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
